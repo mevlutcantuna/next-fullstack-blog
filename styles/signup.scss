@@ -1,0 +1,22 @@
+.signup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+
+    &__container{
+        width: 400px;
+        
+        &__title{
+            font-size: 32px;
+            color: #1890ff;
+        }
+
+        &__link{
+
+            & span{
+                color: #1890ff;
+            }
+        }
+    }
+}
