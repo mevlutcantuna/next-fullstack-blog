@@ -13,6 +13,13 @@ const Signup = () => {
             initialValues={{ remember: true }}
             autoComplete="off"
           >
+            <Form.Item 
+              name="fullname"
+              rules={[{ required: true, message: "Please input your full name!" }]}
+            >
+              <Input placeholder="Full Name" type="text" />
+            </Form.Item>
+
             <Form.Item
               name="email"
               rules={[{ required: true, message: "Please input your email!" }]}
