@@ -1,0 +1,49 @@
+.header{
+  display: flex;
+  align-items: center;
+
+  &__container{
+    width: 100%;
+    max-width: 1000px;
+    height: 6rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__links{
+      display: flex;
+      align-items: center;
+      margin: 0;
+
+      &__item{
+        display: flex;
+        & a{
+          margin-right: 1.25rem;
+          color: #1f66c9;
+        }
+
+        &--account{
+          display: flex;
+          align-items: center;
+          margin-left: 3rem;
+          & img{
+            border-radius: 100%;
+          }
+
+          & span{
+            margin-left: 0.5rem;
+          }
+        }
+        & button{
+          background: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+
+  }
+}
