@@ -1,9 +1,9 @@
-import Index from "./header";
+import Header from "./header";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Index />
+      <Header />
       {children}
     </>
   );

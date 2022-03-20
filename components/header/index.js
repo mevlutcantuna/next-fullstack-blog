@@ -2,7 +2,7 @@ import Link from "next/link";
 import ExpandIcon from "../../icons/expand-icon";
 import Image from "next/image";
 
-import { Button, Popover } from "antd";
+import { Popover } from "antd";
 import PopoverContent from "./PopoverContent";
 
 const Index = () => {

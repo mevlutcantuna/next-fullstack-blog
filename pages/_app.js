@@ -2,6 +2,9 @@ import "../styles/globals.css";
 import "../styles/login.scss";
 import "../styles/signup.scss";
 import "../styles/header.scss";
+import "../styles/home.scss";
+import "../styles/small-card.scss"
+
 import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
