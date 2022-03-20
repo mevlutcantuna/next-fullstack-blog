@@ -1,5 +1,6 @@
 .small-post-card{
-    width: 310px;
+    width: 100%;
+    max-width: 310px;
     margin-bottom: 2rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 0.5rem;
@@ -12,7 +13,8 @@
     }
 
     &__image{
-        width: 310px;
+        width: 100%;
+        max-width: 310px;
         height: 150px;
         border-radius: .5rem;
         margin-bottom: 1.5rem; 

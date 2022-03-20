@@ -1,9 +1,10 @@
 .header{
   display: flex;
   align-items: center;
+  padding: 0 1rem;
 
   &__container{
-    width: 100%;
+    width: 100%; 
     max-width: 1000px;
     height: 6rem;
     margin: auto;
@@ -11,39 +12,34 @@
     align-items: center;
     justify-content: space-between;
 
-    &__links{
-      display: flex;
-      align-items: center;
-      margin: 0;
+    &__title a{
+      color: rgb(5, 79, 175);
 
-      &__item{
-        display: flex;
-        & a{
-          margin-right: 1.25rem;
-          color: #1f66c9;
-        }
-
-        &--account{
-          display: flex;
-          align-items: center;
-          margin-left: 3rem;
-          & img{
-            border-radius: 100%;
-          }
-
-          & span{
-            margin-left: 0.5rem;
-          }
-        }
-        & button{
-          background: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-        }
+      &:hover{
+        color: rgb(18, 39, 97);
       }
     }
 
+    &__hamburger-menu{
+      display: none;
 
+      & div{
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: "1050px") {
+  .header__container{
+    
+    &__hamburger-menu{
+      display: flex;
+    }
+
+    &__menu{
+      display: none;  
+    }
   }
 }

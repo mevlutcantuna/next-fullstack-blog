@@ -26,9 +26,9 @@
   &__main {
     max-width: 1000px;
     width: 100%;
-    margin: auto;
-    margin-top: 2rem;
+    margin: 2rem auto 0 auto;
     color: rgb(29, 50, 90);
+    
 
     &__search{
       display: flex;
@@ -72,14 +72,53 @@
       &__cards {
         width: 100%;
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
       }
     }
   }
 }
 
+@media only screen and (max-width: "1050px") {
+
+  .home__main__posts{
+     
+       display: flex;
+       justify-content: center;
+
+     &__cards{
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
 @media only screen and (max-width: "660px") {
+
+  .home__main{
+    padding: 2rem 1rem;
+
+    & form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 25rem;
+
+      & input{
+        width: 100%;
+        margin: 0 5rem 1rem 5rem;
+        
+      }
+
+      & button{
+        width: 10rem;
+        height: 3rem;
+      }
+    }
+  }
+
   .home__header {
     height: 15rem;
   }

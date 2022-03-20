@@ -20,7 +20,7 @@ export default function Home() {
           </form>
         </div>
         <div className="home__main__posts">
-          <h2>Lasts Posts</h2>
+          <h2>Related Posts</h2>
           <div className="home__main__posts__cards">
             <SmallCard />
             <SmallCard />

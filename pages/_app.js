@@ -4,6 +4,8 @@ import "../styles/signup.scss";
 import "../styles/header.scss";
 import "../styles/home.scss";
 import "../styles/small-card.scss"
+import "../styles/header-menu.scss"
+
 
 import "antd/dist/antd.css";
 
