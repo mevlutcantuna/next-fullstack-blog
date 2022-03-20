@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import Image from "next/image";
 import SmallCard from "../components/SmallPostCard";
 
 export default function Home() {
@@ -13,11 +12,20 @@ export default function Home() {
         </div>
       </div>
       <div className="home__main">
-        <h2>Lasts Posts</h2>
-        <div className="home__main__cards">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+        <div className="home__main__search">
+          <h1>Search new blogs</h1>
+          <form>
+            <input placeholder="Search post name..."/>
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <div className="home__main__posts">
+          <h2>Lasts Posts</h2>
+          <div className="home__main__posts__cards">
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+          </div>
         </div>
       </div>
     </Layout>
