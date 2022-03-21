@@ -26,7 +26,7 @@ const Menu = () => {
           </Link>
         </li>
         <li className="header-menu__links__item">
-          <Link href="/">
+          <Link href="/account">
             <a>
               <div className="header-menu__links__item--account">
                 <Image

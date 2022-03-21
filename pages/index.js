@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import SmallCard from "../components/SmallPostCard";
+import {Layout} from "../components";
+import {SmallPostCard} from "../components";
 
 export default function Home() {
   return (
@@ -22,9 +22,9 @@ export default function Home() {
         <div className="home__main__posts">
           <h2>Related Posts</h2>
           <div className="home__main__posts__cards">
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
+            <SmallPostCard />
+            <SmallPostCard />
+            <SmallPostCard />
           </div>
         </div>
       </div>

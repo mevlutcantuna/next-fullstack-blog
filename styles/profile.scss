@@ -1,0 +1,28 @@
+.profile{
+
+    &__image{
+        width: 200px;
+        height: 200px;
+        border-radius: .75rem;
+        overflow: hidden;   
+
+        &__uploader{
+            position: relative;
+            cursor: pointer;
+
+            &__text{
+                width: calc(100% - 2px);
+                position: absolute;
+                bottom: 0px;
+                left: 1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 0;
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 4px 4px;
+                margin: auto;
+            }
+        }
+    }
+}
