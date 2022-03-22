@@ -11,6 +11,27 @@
     height: 28rem;
 
     &__center {
+      padding: 1rem;
+
+      & a{
+        display: flex;
+        justify-content: center;
+        color: white;
+        border: 1px solid white;
+        margin-top: 2rem;
+        padding: 1rem 0;
+        border-radius: 4px;
+
+        &:hover{
+          backdrop-filter: blur(8px);
+          background-color: rgba(255, 255, 255, 0.671);
+          color: #054faf;
+          border: none;
+          transition: background-color .4s ease-in;
+        }
+
+      }
+
       & h1,
       h2,
       h3,

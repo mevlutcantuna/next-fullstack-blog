@@ -1,10 +1,13 @@
 .profile{
+    display: flex;
+    margin-top: 2rem;
 
     &__image{
         width: 200px;
         height: 200px;
         border-radius: .75rem;
         overflow: hidden;   
+        margin-right: 2rem;
 
         &__uploader{
             position: relative;
@@ -23,6 +26,33 @@
                 border-radius: 0 0 4px 4px;
                 margin: auto;
             }
+        }
+    }
+
+    &__info{
+        max-width: 30rem;
+        width: 100%;
+    }
+
+    .ant-btn{
+        background-color: #054faf;
+        color: white;
+    }
+}
+
+
+@media only screen  and (max-width: "660px"){
+    .profile{
+        flex-direction: column;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        &__image{
+            margin-bottom: 2rem;
+            margin-right: 0;
+            display: flex;
+            justify-content: center;
         }
     }
 }

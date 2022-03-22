@@ -7,7 +7,8 @@ import "../styles/small-card.scss"
 import "../styles/header-menu.scss"
 import "../styles/account.scss"
 import "../styles/profile.scss"
-
+import "../styles/blogs.scss"
+import "../styles/main-post-card.scss"
 
 
 import "antd/dist/antd.css";

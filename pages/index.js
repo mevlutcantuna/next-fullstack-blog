@@ -1,5 +1,6 @@
-import {Layout} from "../components";
-import {SmallPostCard} from "../components";
+import Link from "next/link";
+import { Layout } from "../components";
+import { SmallPostCard } from "../components";
 
 export default function Home() {
   return (
@@ -9,13 +10,16 @@ export default function Home() {
           <h3>Blog</h3>
           <h1>Good Places</h1>
           <h3>I havent been everywhere, but its on my list.</h3>
+          <Link href="/blogs">
+            <a>Blogs</a>
+          </Link>
         </div>
       </div>
       <div className="home__main">
         <div className="home__main__search">
           <h1>Search new blogs</h1>
           <form>
-            <input placeholder="Search post name..."/>
+            <input placeholder="Search post name..." />
             <button type="submit">Search</button>
           </form>
         </div>
