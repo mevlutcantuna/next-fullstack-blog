@@ -28,10 +28,10 @@ const MainPostCard = () => {
         </div>
         <div className="main-post-card__info__footer">
           <div className="main-post-card__info__footer__left">
-            <div className="main-post-card__info__footer__tags">
+            <div className="main-post-card__info__footer__left__tags">
               React , Vue , OOP
             </div>
-            <div className="main-post-card__info__footer__reading-time">
+            <div className="main-post-card__info__footer__left__reading-time">
               4 min read
             </div>
           </div>

@@ -3,6 +3,8 @@
     max-width: 700px;
     display: flex;
     margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
 
     &__info{
         display: flex;
@@ -59,11 +61,37 @@
                 font-size: 16px;
             }
         }
+
+        &__footer{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &__left{
+                display: flex;
+
+                &__tags{
+                    margin-right: 1rem;
+                }
+            }
+        }
     }
 
     &__image{
         display: flex;
         justify-content: center;
         align-items: center;
+
+        & img{
+            border-radius: 4px;
+
+        }
     }
+
+    &:hover{
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        transition: all .5s ease-in-out;
+    }
+
+   
 }
