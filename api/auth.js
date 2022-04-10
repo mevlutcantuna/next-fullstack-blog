@@ -9,5 +9,5 @@ export const login = async (form) => {
 };
 
 export const getUser = async (token) => {
-  return await instance.get("auth/get-user",token)
-}
+  return await instance.post("auth/get-user", {token});
+};

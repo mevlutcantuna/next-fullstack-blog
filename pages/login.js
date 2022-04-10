@@ -1,20 +1,22 @@
 import { Form, Input, Button, message } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { login } from "../api/auth";
 import { useInput } from "../hooks/useInput";
 
 const Login = () => {
   const [inputs, setInputs] = useInput({ email: "", password: "" });
+  const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await login(inputs);
-      localStorage.setItem("token",JSON.stringify(res.data.token));
-      
+      const { data } = await login(inputs);
+      localStorage.setItem("token", JSON.stringify(data.token));
+      return router.push("/");
     } catch (error) {
-      message.error(error.response.data.message);
+      return message.error(error.response.data.message);
     }
   };
 

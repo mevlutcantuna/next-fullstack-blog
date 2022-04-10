@@ -6,18 +6,17 @@ dbConnect();
 export default function handler(req, res) {
   switch (req.method) {
     case "GET":
+      return res.status(200).json({success:true,message:"GET USER API"})
+    case "POST":
       return getUser(req, res);
   }
 }
 
 const getUser = async (req, res) => {
   const { token } = req.body;
-    
-  try {
-
+  try { 
     // get user
     const user = await User.findOne({ token });
-
     // check token exists
     if (!token) {
       return res

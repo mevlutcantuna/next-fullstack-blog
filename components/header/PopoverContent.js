@@ -1,6 +1,6 @@
 import Logout from "../../icons/logout.js";
 
-const PopoverContent = () => {
+const PopoverContent = ({logout}) => {
   return (
     <div className="popover-content">
       <button
@@ -10,6 +10,7 @@ const PopoverContent = () => {
           padding: "0.5rem",
           cursor: "pointer",
         }}
+        onClick={logout}
       >
         <Logout />
         <span style={{ marginLeft: "0.5rem" }}>Logout</span>
