@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Technology",
+    "id": 1
+  },
+  {
+    "name": "Design",
+    "id": 2
+  },
+  {
+    "name": "Travel",
+    "id": 3
+  },
+  {
+    "name": "Programming",
+    "id": 4
+  },
+  {
+    "name": "Software",
+    "id": 5
+  },
+  {
+    "name": "ReactJS",
+    "id": 6
+  },
+  {
+    "name": "Javascript",
+    "id": 7
+  },
+  {
+    "name": "Photography",
+    "id": 8
+  },
+  {
+    "name": "Natural",
+    "id": 9
+  },
+  {
+    "name": "Books",
+    "id": 10
+  },
+  {
+    "name": "Wildlife",
+    "id": 11
+  }
+]

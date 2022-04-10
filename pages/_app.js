@@ -9,7 +9,8 @@ import "../styles/account.scss"
 import "../styles/profile.scss"
 import "../styles/blogs.scss"
 import "../styles/main-post-card.scss"
-
+import "../styles/new-post.scss"
+import "../styles/image-uploader.scss"
 
 import "antd/dist/antd.css";
 

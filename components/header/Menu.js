@@ -26,6 +26,11 @@ const Menu = () => {
           </Link>
         </li>
         <li className="header-menu__links__item">
+          <Link href="/new-post">
+            <a>Create New Post</a>
+          </Link>
+        </li>
+        <li className="header-menu__links__item">
           <Link href="/account">
             <a>
               <div className="header-menu__links__item--account">
@@ -51,7 +56,7 @@ const Menu = () => {
             </Popover>
           </div>
           <div className="logout">
-              <Logout/>
+            <Logout />
           </div>
         </li>
       </ul>

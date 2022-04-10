@@ -1,14 +1,12 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { signup } from "../api/auth";
 import { useInput } from "../hooks/useInput";
 
 import {errorMessage} from "../utils/notifications"
 
 const Signup = () => {
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [inputs, setInputs] = useInput({
     fullname: "",
@@ -19,10 +17,11 @@ const Signup = () => {
   const onSubmit = async () => {
     try {
       const response = await signup(inputs);
+      router.push("/login")
+      return message.success("You signed up.")
     } catch (error) {
       return errorMessage(error["response"].data.message)
     }
-    router.push("/login")
   };
 
   return (

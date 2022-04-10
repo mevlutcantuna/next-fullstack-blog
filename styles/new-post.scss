@@ -1,0 +1,65 @@
+.new-post {
+    padding: 0 1rem;
+
+  &__wrapper {
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    padding-bottom: 2rem;
+
+    &__title {
+      margin-bottom: 1rem !important;
+    }
+
+    &__form {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+
+      &__item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        & span {
+          font-size: 14px;
+          margin-bottom: 0.1rem;
+        }
+
+        & input[type="text"],
+        textarea {
+          border: 1px solid rgb(133, 133, 133);
+          border-radius: 8px;
+          padding: 12px;
+        }
+
+        & .ant-select-selector {
+          border-radius: 8px !important;
+          border: 1px solid rgb(133, 133, 133) !important;
+          height: 44px;
+        }
+      }
+
+      &__button{
+        height: 40px;
+        background-color: #054faf;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &:hover{
+          background-color: #1890ff;
+          transition: all .3s ease-in-out;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .new-post__wrapper__form{
+        width: 100%;
+    }
+
+}

@@ -1,7 +1,23 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import Link from "next/link";
+import { login } from "../api/auth";
+import { useInput } from "../hooks/useInput";
 
 const Login = () => {
+  const [inputs, setInputs] = useInput({ email: "", password: "" });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await login(inputs);
+      localStorage.setItem("token",JSON.stringify(res.data.token));
+      
+    } catch (error) {
+      message.error(error.response.data.message);
+    }
+  };
+
   return (
     <div className="login">
       <div className="login__container">
@@ -11,12 +27,19 @@ const Login = () => {
             wrapperCol={{ span: 24 }}
             initialValues={{ remember: true }}
             autoComplete="off"
+            onSubmitCapture={onSubmit}
           >
             <Form.Item
               name="email"
               rules={[{ required: true, message: "Please input your email!" }]}
             >
-              <Input placeholder="Email" type="email" />
+              <Input
+                name="email"
+                value={inputs.email}
+                onChange={setInputs}
+                placeholder="Email"
+                type="email"
+              />
             </Form.Item>
 
             <Form.Item
@@ -25,18 +48,23 @@ const Login = () => {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password placeholder="Password" />
+              <Input.Password
+                name="password"
+                value={inputs.password}
+                onChange={setInputs}
+                placeholder="Password"
+                type="password"
+              />
             </Form.Item>
 
             <Form.Item wrapperCol={{ span: 16 }}>
-              <Button type="primary" htmlType="submit">
+              <Button onClick={onSubmit} type="primary" htmlType="submit">
                 Login
               </Button>
             </Form.Item>
             <div className="login__container__link">
               <div>
-                Dont u have a account?
-                &nbsp;
+                Dont u have a account? &nbsp;
                 <span>
                   <Link href="/signup">
                     <a>Sign Up</a>
