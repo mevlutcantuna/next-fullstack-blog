@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 
-const ImageUploaderWithPreview = (setImageFile) => {
+const ImageUploaderWithPreview = ({ setImage }) => {
   const showPreview = (event) => {
     var preview = document.getElementsByClassName("preview")[0];
 
     if (event && event.target.files.length > 0) {
-      var src = URL.createObjectURL(event.target.files[0]);
+      let src = URL.createObjectURL(event.target.files[0]);
       preview.style.backgroundSize = "cover";
       preview.style.backgroundImage = `url(${src})`;
+      setImage(event.target.files[0])
     } else {
       preview.style.backgroundSize = "contain";
 
@@ -18,7 +19,7 @@ const ImageUploaderWithPreview = (setImageFile) => {
 
   useEffect(() => {
     showPreview(null);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
