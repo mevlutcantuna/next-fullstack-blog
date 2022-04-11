@@ -32,11 +32,11 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  author: {
+  user_id: {
     type: String,
     required: true,
   },
 });
 
 module.exports =
-  mongoose.models.BlogSchema || mongoose.model("Blog", BlogSchema);
+  mongoose.models.Blog || mongoose.model("Blog", BlogSchema);

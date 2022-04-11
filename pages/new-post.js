@@ -48,7 +48,7 @@ const NewPost = () => {
       description: inputs.description,
       imageUrl,
       tags: tagOptions,
-      author: user.fullname,
+      user_id: user._id,
       date: moment(new Date()).format("MMM Do YY"),
       time: readingTime(inputs.description),
     };

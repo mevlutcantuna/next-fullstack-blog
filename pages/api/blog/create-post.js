@@ -19,10 +19,15 @@ const createBlog = async (req, res) => {
 
   try {
     const addedPost = new Blog(post);
+    const author = await User.findOne({ _id: post.user_id })
+
     await addedPost
       .save()
       .then(() => {
-        return res.status(200).json({ success: true, post: addedPost });
+        return res.status(200).json({
+          success: true,
+          post: { ...addedPost._doc, author: author.fullname },
+        });
       })
       .catch((err) => console.log(err));
   } catch (error) {
