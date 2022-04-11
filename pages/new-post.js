@@ -25,7 +25,7 @@ const NewPost = () => {
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState(null);
   const { user } = useSelector((state) => state.user);
-  const router = useRouter()
+  const router = useRouter();
 
   const { Option } = Select;
 
@@ -62,9 +62,7 @@ const NewPost = () => {
       const _post = await createPost(newPost);
       setPost(_post.data.post);
       setLoading(false);
-      debugger
-      router.push(`/blogs/${post._id}`)
-      
+      router.push(`/blogs/${_post.data.post._id}`);
     } catch (error) {
       setLoading(false);
       return message.error(error.message);

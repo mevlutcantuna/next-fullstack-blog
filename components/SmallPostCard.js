@@ -1,24 +1,32 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import XImage from "../assets/ximage.jpeg";
-
-const SmallCard = () => {
-  return ( 
+const SmallCard = ({ post }) => {
+  return (
     <div className="small-post-card">
       <div className="small-post-card__image">
-        <Image src={XImage} alt="card-image" width={310} height={150} objectFit="cover"/>
+        <Image
+          src={post?.imageUrl}
+          alt="card-image"
+          width={310}
+          height={150}
+          objectFit="cover"
+        />
       </div>
       <div className="small-post-card__header">
-        <h3>Best Github Repos</h3>
-        <p>21.02.2021</p>
+        <Link href={`/blogs/${post?._id}`}>
+          <a>
+            <h3>{post?.title}</h3>
+          </a>
+        </Link>
+        <p>{post?.date}</p>
       </div>
-      <div className="small-post-card__text">
-        500s, when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. It has survived not only five centuries, but
-        also the leap into electronic typesetting, remaining essentially
-        unchanged.
+      <div className="small-post-card__text">{post?.shortDescription}</div>
+      <div className="small-post-card__footer">
+        <Link href={`/blogs/${post?._id}`}>
+          <a>More Detail</a>
+        </Link>
       </div>
-      <div className="small-post-card__footer">More Detail</div>
     </div>
   );
 };

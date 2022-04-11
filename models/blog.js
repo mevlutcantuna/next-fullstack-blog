@@ -36,7 +36,12 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  likesCount: {
+    type: Number,
+    default: 0,
+  },
+  likes: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+
 });
 
-module.exports =
-  mongoose.models.Blog || mongoose.model("Blog", BlogSchema);
+module.exports = mongoose.models.Blog || mongoose.model("Blog", BlogSchema);

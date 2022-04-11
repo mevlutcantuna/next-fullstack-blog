@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { getMostPopularPosts } from "../api/blog";
 import { Layout } from "../components";
 import { SmallPostCard } from "../components";
 
-export default function Home() {
+export default function Home({ popularPosts }) {
   return (
     <Layout>
       <div className="home__header">
@@ -26,12 +27,20 @@ export default function Home() {
         <div className="home__main__posts">
           <h2>Related Posts</h2>
           <div className="home__main__posts__cards">
-            <SmallPostCard />
-            <SmallPostCard />
-            <SmallPostCard />
+            {popularPosts?.map((post) => (
+              <SmallPostCard key={post?._id} post={post} />
+            ))}
           </div>
         </div>
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { data } = await getMostPopularPosts();
+
+  return {
+    props: { popularPosts: data.posts }, // will be passed to the page component as props
+  };
 }

@@ -11,6 +11,8 @@ import "../styles/blogs.scss";
 import "../styles/main-post-card.scss";
 import "../styles/new-post.scss";
 import "../styles/image-uploader.scss";
+import "../styles/post-details.scss";
+
 
 import "antd/dist/antd.css";
 
