@@ -1,16 +1,18 @@
-import Layout from "../components/Layout";
-import { useInput } from "../hooks/useInput";
-import { Spin } from "antd";
-
-import ImageUploaderWithPreview from "../components/ImageUploaderWithPreview";
 import { useState } from "react";
-import { message, Select } from "antd";
-import Tags from "../constants/tags.json";
 import { useSelector } from "react-redux";
+import { useInput } from "../hooks/useInput";
+
+import Layout from "../components/Layout";
+import ImageUploaderWithPreview from "../components/ImageUploaderWithPreview";
+
+import { Spin, message, Select } from "antd";
+
+import Tags from "../constants/tags.json";
 import { uploadImage } from "../utils/uploadImage";
+import { createPost } from "../api/blog";
 import readingTime from "reading-time";
 import moment from "moment";
-import { createPost } from "../api/blog";
+import { Router, useRouter } from "next/router";
 
 const NewPost = () => {
   const [inputs, setInputs] = useInput({
@@ -19,11 +21,11 @@ const NewPost = () => {
     description: "",
   });
   const [tagOptions, setTagOptions] = useState([]);
-  const [imageFile, setImageFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState(null);
   const { user } = useSelector((state) => state.user);
+  const router = useRouter()
 
   const { Option } = Select;
 
@@ -33,14 +35,17 @@ const NewPost = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    if (imageFile === "") {
-      return message.error("Please add a photo.");
+    if (
+      imageUrl === "" ||
+      inputs.title === "" ||
+      inputs.description === "" ||
+      inputs.shortDescription === "" ||
+      tagOptions.length <= 0
+    ) {
+      return message.error("Please fill out the form.");
     }
 
     setLoading(true);
-    uploadImage(imageFile).then((res) => {
-      setImageUrl(res.data.secure_url);
-    });
 
     const newPost = {
       title: inputs.title,
@@ -55,18 +60,16 @@ const NewPost = () => {
 
     try {
       const _post = await createPost(newPost);
-      setPost(_post);
+      setPost(_post.data.post);
       setLoading(false);
+      debugger
+      router.push(`/blogs/${post._id}`)
+      
     } catch (error) {
       setLoading(false);
       return message.error(error.message);
     }
-
-    setLoading(false);
   };
-
-
-  console.log(post)
 
   return (
     <Layout>
@@ -77,7 +80,7 @@ const NewPost = () => {
             <form onSubmit={submit} className="new-post__wrapper__form">
               <label className="new-post__wrapper__form__item">
                 <span>Image</span>
-                <ImageUploaderWithPreview setImage={setImageFile} />
+                <ImageUploaderWithPreview setImage={setImageUrl} />
               </label>
               <label className="new-post__wrapper__form__item">
                 <span>Title</span>

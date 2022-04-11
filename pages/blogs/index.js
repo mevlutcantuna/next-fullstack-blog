@@ -6,7 +6,6 @@ const Blogs = () => {
             <div className="blogs__container">
                 <MainPostCard/>
                 <MainPostCard/>
-                
             </div>
         </div>
     </Layout>

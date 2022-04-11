@@ -1,14 +1,21 @@
+import { message } from "antd";
 import { useEffect } from "react";
+import { uploadImage } from "../utils/uploadImage";
 
 const ImageUploaderWithPreview = ({ setImage }) => {
   const showPreview = (event) => {
     var preview = document.getElementsByClassName("preview")[0];
 
     if (event && event.target.files.length > 0) {
+      message.info("Image is uploading.")
       let src = URL.createObjectURL(event.target.files[0]);
-      preview.style.backgroundSize = "cover";
-      preview.style.backgroundImage = `url(${src})`;
-      setImage(event.target.files[0])
+      uploadImage(event.target.files[0]).then(res => {
+        setImage(res.data.secure_url)
+        preview.style.backgroundSize = "cover";
+        preview.style.backgroundImage = `url(${src})`;
+        message.success("Image uploaded.")
+      })
+      
     } else {
       preview.style.backgroundSize = "contain";
 

@@ -1,13 +1,10 @@
-import Link from "next/link";
-import ExpandIcon from "../../icons/expand-icon";
-import HamburgerMenu from "../../icons/hamburger-menu";
-import Image from "next/image";
-
-import { Popover } from "antd";
-import PopoverContent from "./PopoverContent";
 import { useState } from "react";
+import Link from "next/link";
+
 import DrawerMenu from "./DrawerMenu";
 import Menu from "./Menu";
+
+import HamburgerMenu from "../../icons/hamburger-menu";
 
 const Index = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);

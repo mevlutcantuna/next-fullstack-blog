@@ -8,11 +8,12 @@ import Logout from "../../icons/logout";
 import { useDispatch, useSelector } from "react-redux";
 import { _resetUser } from "../../store/actions/user";
 import { useRouter } from "next/router";
+import { Spin } from "antd";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { user } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
 
   const logout = () => {
     dispatch(_resetUser());
@@ -43,51 +44,56 @@ const Menu = () => {
             <a>Create New Post</a>
           </Link>
         </li>
-        <li className="header-menu__links__item">
-          {user ? (
-            <>
-              <Link href="/account">
-                <a>
-                  <div className="header-menu__links__item--account">
-                    <Image
-                      width={40}
-                      height={40}
-                      alt="profil-image"
-                      src={user?.image}
-                    />
-                    <span>{user?.fullname}</span>
-                  </div>
-                </a>
-              </Link>
-              <div className="popover">
-                <Popover
-                  placement="bottom"
-                  content={<PopoverContent logout={logout} />}
-                  trigger="click"
-                >
-                  <button>
-                    <ExpandIcon />
+
+        {loading ? (
+          <Spin />
+        ) : (
+          <li className="header-menu__links__item">
+            {user ? (
+              <>
+                <Link href="/account">
+                  <a>
+                    <div className="header-menu__links__item--account">
+                      <Image
+                        width={40}
+                        height={40}
+                        alt="profil-image"
+                        src={user?.image}
+                      />
+                      <span>{user?.fullname}</span>
+                    </div>
+                  </a>
+                </Link>
+                <div className="popover">
+                  <Popover
+                    placement="bottom"
+                    content={<PopoverContent logout={logout} />}
+                    trigger="click"
+                  >
+                    <button>
+                      <ExpandIcon />
+                    </button>
+                  </Popover>
+                </div>
+                <div className="logout">
+                  <button onClick={() => logout()}>
+                    <Logout />
                   </button>
-                </Popover>
+                </div>
+              </>
+            ) : (
+              <div>
+                <Link href="/login">
+                  <a>Log in</a>
+                </Link>
+                <divider style={{ marginRight: "1.25rem" }}>|</divider>
+                <Link href="/signup">
+                  <a>Sign up</a>
+                </Link>
               </div>
-              <div className="logout">
-                <button onClick={() => logout()}>
-                  <Logout />
-                </button>
-              </div>
-            </>
-          ) : (
-            <div>
-              <Link href="/login">
-                <a>Log in</a>
-              </Link>
-              <divider style={{marginRight:"1.25rem"}}>|</divider>
-              <Link href="/signup">
-                <a>Sign up</a>
-              </Link>
-            </div>
-          )}
-        </li>
+            )}
+          </li>
+        )}
       </ul>
     </div>
   );
