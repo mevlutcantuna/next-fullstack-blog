@@ -1,6 +1,10 @@
 .small-post-card {
   width: 100%;
   max-width: 310px;
+  height: 412px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: 2rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 0.5rem;

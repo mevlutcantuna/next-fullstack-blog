@@ -20,11 +20,15 @@ const BlogSchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
-  date: {
-    type: String,
+  createdAt: {
+    type: Date,
     required: true,
   },
-  time: {
+  updatedAt: {
+    type: Date,
+    required: true,
+  },
+  readingTime: {
     type: Object,
     required: true,
   },
@@ -36,12 +40,10 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  likesCount: {
+  likes: {
     type: Number,
     default: 0,
   },
-  likes: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
-
 });
 
 module.exports = mongoose.models.Blog || mongoose.model("Blog", BlogSchema);

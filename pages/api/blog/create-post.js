@@ -14,12 +14,13 @@ export default function handler(req, res) {
       return createBlog(req, res);
   }
 }
+
 const createBlog = async (req, res) => {
   const post = req.body;
 
   try {
     const addedPost = new Blog(post);
-    const author = await User.findOne({ _id: post.user_id })
+    const author = await User.findOne({ _id: post.user_id });
 
     await addedPost
       .save()

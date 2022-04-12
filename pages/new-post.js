@@ -54,8 +54,9 @@ const NewPost = () => {
       imageUrl,
       tags: tagOptions,
       user_id: user._id,
-      date: moment(new Date()).format("MMM Do YY"),
-      time: readingTime(inputs.description),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      readingTime: readingTime(inputs.description),
     };
 
     try {

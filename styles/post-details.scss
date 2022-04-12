@@ -1,0 +1,101 @@
+.post-detail {
+  padding: 0 1rem;
+  width: 100%;
+
+  .post-detail__wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+
+    &__image {
+      & span {
+        min-height: 18rem;
+
+        & img {
+          border-radius: 4px;
+        }
+      }
+    }
+
+    &__title {
+      margin: 1rem 0 2rem 0;
+    }
+
+    &__short-description {
+      width: 70%;
+      font-size: 1rem;
+      color: rgb(173, 171, 171);
+      margin-bottom: 1rem;
+    }
+
+    &__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      &__left {
+
+        & span {
+          color: rgb(102, 101, 101);
+        }
+
+        & span:nth-child(1) {
+          margin-right: 1rem;
+        }
+      }
+
+      &__right {
+        display: flex;
+        align-items: center;
+
+        & button {
+          background: transparent;
+          cursor: pointer;
+          transition: all ease-in-out .2s;
+          display: flex;
+
+          &:hover {
+            transform: scale(1.5);
+          }
+
+          &:active{
+            transform: scale(1.2);
+
+          }
+        }
+
+        & span{
+            font-size: 1rem;
+            margin-left: .8rem;
+        }
+      }
+    }
+
+    &__tags{
+        margin-bottom: 1.5rem;
+    }
+
+    &__author {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      &__image {
+        border-radius: 100%;
+      }
+
+      &__name {
+        margin-left: 1rem;
+        font-size: 1rem;
+      }
+    }
+
+    &__description {
+      width: 90%;
+      line-height: 32px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+  }
+}
