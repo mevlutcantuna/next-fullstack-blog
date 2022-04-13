@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import MoreIcon from "../icons/more-icon";
-import XImage from "../assets/ximage.jpeg";
+import MoreIcon from "../../icons/more-icon";
+import XImage from "../../assets/ximage.jpeg";
 
 const MainPostCard = () => {
   return (

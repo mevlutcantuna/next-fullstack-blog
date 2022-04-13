@@ -13,6 +13,5 @@ export const getPostDetail = async (value) => {
 };
 
 export const updatePostLikeCount = async ({ post_id, user_id, likeValue }) => {
-  console.log(post_id, user_id, likeValue);
   return await instance.put("/blog/like-post", { post_id, user_id, likeValue });
 };

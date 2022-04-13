@@ -8,11 +8,9 @@ import ImageUploaderWithPreview from "../components/ImageUploaderWithPreview";
 import { Spin, message, Select } from "antd";
 
 import Tags from "../constants/tags.json";
-import { uploadImage } from "../utils/uploadImage";
 import { createPost } from "../api/blog";
 import readingTime from "reading-time";
-import moment from "moment";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const NewPost = () => {
   const [inputs, setInputs] = useInput({

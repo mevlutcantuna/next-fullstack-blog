@@ -97,5 +97,63 @@
       font-size: 1rem;
       letter-spacing: 0.5px;
     }
+
+    &__comment-title{
+      margin: 1rem 0;
+      font-size: 2rem;
+      color: #858585;
+      border-bottom: 1px solid #cccccc;
+    }
+
+
+    &__comment-bar{
+      display: flex;
+      align-items: center;
+
+      & span:nth-child(1){
+        min-width: 40px;
+      }
+
+      &__image{
+        border-radius: 100%;
+        min-width: 40px;
+      }
+
+      &__input {
+        border:1px solid #000000;
+        border-radius: 8px;
+        height: 40px;
+        margin: 0 1rem;
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      &__button{
+        padding: 8px 1rem;
+        background-color: #1172c2;
+        color: #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all ease-in-out .2s;
+
+        &:hover{
+          background-color: #4b92fd;
+        }
+
+        &:disabled{
+          background-color: #cccccc;
+          color: black;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &__comments{
+      margin-top: 1rem;
+      border-top: 1px solid #cccccc;
+      padding-top: 1rem;
+    }
+
   }
 }

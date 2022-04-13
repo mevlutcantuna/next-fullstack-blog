@@ -15,10 +15,12 @@ const updatePostLike = async (req, res) => {
   const { post_id, user_id, likeValue } = req.body;
 
   try {
+    // check body is coming
     if (!post_id || !user_id || !likeValue) {
       return res.status(400).json({ success: false, message: error.message });
     }
 
+    // to get likes before calling here
     const oldPost = await Blog.findOne({ _id: post_id });
 
     const likes = oldPost.likes + likeValue;
@@ -37,6 +39,7 @@ const updatePostLike = async (req, res) => {
         .status(200)
         .json({ success: true, post: { ...post._doc, isLiked: false } });
     } else {
+      // add to like data to like database
       const liked = new Like({ user_id, post_id });
       await liked.save();
 

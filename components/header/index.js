@@ -6,7 +6,7 @@ import Menu from "./Menu";
 
 import HamburgerMenu from "../../icons/hamburger-menu";
 
-const Index = () => {
+const Header = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const changeDrawerIsOpen = (value) => {
@@ -38,4 +38,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Header;

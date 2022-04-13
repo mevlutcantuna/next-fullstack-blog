@@ -9,11 +9,13 @@ import { Spin } from "antd";
 import HeartEmpty from "../../icons/heart-empty";
 import HeartFill from "../../icons/heart-fill";
 import PostTag from "../../components/PostTag";
+import { useInput } from "../../hooks/useInput";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
+  const [inputs, setInputs] = useInput({ commentValue: "" });
   const router = useRouter();
   const { id } = router.query;
 
@@ -34,8 +36,6 @@ const PostDetail = () => {
       post_id: id,
       likeValue: value,
     });
-
-    console.log(updatedPostLike)
 
     const updatedPost = {
       ...post,
@@ -120,6 +120,30 @@ const PostDetail = () => {
             <div className="post-detail__wrapper__description">
               {post.description}
             </div>
+            <div className="post-detail__wrapper__comment-title">Comments</div>
+            <div className={"post-detail__wrapper__comment-bar"}>
+              <Image
+                className="post-detail__wrapper__comment-bar__image"
+                src={user && user.image}
+                width={40}
+                height={40}
+                alt="author-image"
+              />
+              <input
+                className="post-detail__wrapper__comment-bar__input"
+                value={inputs.commentValue}
+                onChange={setInputs}
+                name="commentValue"
+                placeholder="Write a comment..."
+              />
+              <button
+                disabled={inputs.commentValue === ""}
+                className="post-detail__wrapper__comment-bar__button"
+              >
+                Comment
+              </button>
+            </div>
+            <div className="post-detail__wrapper__comments">sa</div>
           </div>
         )}
       </div>

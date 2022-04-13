@@ -21,7 +21,7 @@ const SmallCard = ({ post }) => {
             <h3>{post?.title}</h3>
           </a>
         </Link>
-        <p>{moment(post?.updatedAt).format('MMM Do YY')}</p>
+        <p>{moment(post?.updatedAt).format("MMM Do YY")}</p>
       </div>
       <div className="small-post-card__text">{post?.shortDescription}</div>
       <div className="small-post-card__footer">
