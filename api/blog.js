@@ -15,3 +15,19 @@ export const getPostDetail = async (value) => {
 export const updatePostLikeCount = async ({ post_id, user_id, likeValue }) => {
   return await instance.put("/blog/like-post", { post_id, user_id, likeValue });
 };
+
+export const getComments = async ({ post_id }) => {
+  return await instance.post("blog/comment/get-comments", { post_id });
+};
+
+export const addComment = async ({ post_id, user_id, text }) => {
+  return await instance.post("blog/comment/add-comment", {
+    post_id,
+    user_id,
+    text,
+  });
+};
+
+export const deleteComment = async ({ comment_id }) => {
+  return await instance.delete(`/blog/comment/${comment_id}`);
+};

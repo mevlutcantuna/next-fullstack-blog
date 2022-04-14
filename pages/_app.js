@@ -12,6 +12,7 @@ import "../styles/main-post-card.scss";
 import "../styles/new-post.scss";
 import "../styles/image-uploader.scss";
 import "../styles/post-details.scss";
+import "../styles/comment.scss";
 
 
 import "antd/dist/antd.css";

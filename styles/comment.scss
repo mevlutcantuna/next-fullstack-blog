@@ -1,0 +1,56 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 665px;
+  margin-bottom: 1rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__author {
+      display: flex;
+      align-items: center;
+
+      &__image {
+        margin-right: 1rem;
+        & span {
+          width: 30px;
+        }
+        & img {
+          border-radius: 100%;
+        }
+      }
+
+      &__name {
+        font-size: 1rem;
+      }
+
+      &__date {
+        color: rgb(165, 165, 165);
+        font-size: 0.75rem;
+        margin-left: 1rem;
+      }
+    }
+
+    &__text {
+      font-size: 1rem;
+    }
+
+    & button {
+      background-color: transparent;
+      cursor: pointer;
+      border: none;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        border: none;
+      }
+    }
+  }
+}

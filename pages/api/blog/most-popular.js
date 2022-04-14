@@ -12,7 +12,7 @@ export default function handler(req, res) {
 
 const getMostPopular = async (req, res) => {
   try {
-    const mostPopularPosts = await Blog.find().sort({ likes: 1 }).limit(3);
+    const mostPopularPosts = await Blog.find().sort({ likes: "desc" }).limit(3);
     return res.status(200).json({ success: true, posts: mostPopularPosts });
   } catch (error) {
     return res.status(200).json({ success: false, message: error.message });

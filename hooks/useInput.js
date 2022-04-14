@@ -9,5 +9,3 @@ export const useInput = (params) => {
 
   return [inputs, handleChange];
 };
-
-// learn how to write custom hooks.

@@ -2,8 +2,15 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Comment from "../../components/Comment";
 import Layout from "../../components/Layout";
-import { getPostDetail, updatePostLikeCount } from "../../api/blog";
+import {
+  getPostDetail,
+  updatePostLikeCount,
+  getComments,
+  addComment,
+  deleteComment,
+} from "../../api/blog";
 import moment from "moment";
 import { Spin } from "antd";
 import HeartEmpty from "../../icons/heart-empty";
@@ -16,6 +23,7 @@ const PostDetail = () => {
   const { user } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [inputs, setInputs] = useInput({ commentValue: "" });
+  const [comments, setComments] = useState(null);
   const router = useRouter();
   const { id } = router.query;
 
@@ -46,8 +54,32 @@ const PostDetail = () => {
     setPost(updatedPost);
   };
 
+  const _getComments = async () => {
+    const { data } = await getComments({ post_id: id });
+    setComments(data.comments);
+  };
+
+  const _addComment = async () => {
+    const { data } = await addComment({
+      text: inputs.commentValue,
+      post_id: id,
+      user_id: user._id,
+    });
+
+    setComments((prev) => [data.comment, ...prev]);
+  };
+
+  const _deleteComment = async (comment_id) => {
+    const { data } = await deleteComment({ comment_id });
+    const deletedComments = comments.filter(
+      (item) => item._id !== data.comment._id
+    );
+    setComments(deletedComments);
+  };
+
   useEffect(() => {
     if (user && id) {
+      _getComments();
       _getPostDetail();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,11 +171,24 @@ const PostDetail = () => {
               <button
                 disabled={inputs.commentValue === ""}
                 className="post-detail__wrapper__comment-bar__button"
+                onClick={_addComment}
               >
                 Comment
               </button>
             </div>
-            <div className="post-detail__wrapper__comments">sa</div>
+            <div className="post-detail__wrapper__comments">
+              {comments ? (
+                comments.map((comment) => (
+                  <Comment
+                    _deleteComment={_deleteComment}
+                    key={comment._id}
+                    comment={comment}
+                  />
+                ))
+              ) : (
+                <h1>Add First Comment</h1>
+              )}
+            </div>
           </div>
         )}
       </div>
