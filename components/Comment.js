@@ -13,6 +13,8 @@ const Comment = ({ comment,_deleteComment }) => {
     </div>
   );
 
+  console.log(comment)
+
   return (
     <div className="comment">
       <div className="comment__header">

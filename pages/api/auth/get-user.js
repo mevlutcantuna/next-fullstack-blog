@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import User from "../../../models/user";
 import dbConnect from "../../../utils/dbConnect";
 
@@ -6,7 +7,7 @@ dbConnect();
 export default function handler(req, res) {
   switch (req.method) {
     case "GET":
-      return res.status(200).json({success:true,message:"GET USER API"})
+      return res.status(200).json({ success: true, message: "GET USER API" });
     case "POST":
       return getUser(req, res);
   }
@@ -14,9 +15,14 @@ export default function handler(req, res) {
 
 const getUser = async (req, res) => {
   const { token } = req.body;
-  try { 
+  try {
+    // verify token and get id
+    const { id } = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(id);
+
     // get user
-    const user = await User.findOne({ token });
+    const user = await User.findOne({ _id: id });
+    
     // check token exists
     if (!token) {
       return res

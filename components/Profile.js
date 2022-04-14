@@ -25,8 +25,6 @@ const Profile = () => {
     },
   };
 
-  console.log(imageFile)
-
   return (
     <div className="profile">
       <div className="profile__image">

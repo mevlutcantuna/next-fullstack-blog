@@ -86,7 +86,7 @@ const Menu = () => {
                 <Link href="/login">
                   <a>Log in</a>
                 </Link>
-                <divider style={{ marginRight: "1.25rem" }}>|</divider>
+                <div style={{ marginRight: "1.25rem" }}>|</div>
                 <Link href="/signup">
                   <a>Sign up</a>
                 </Link>

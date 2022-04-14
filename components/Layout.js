@@ -7,8 +7,12 @@ const Layout = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(_getUser());
-  }, [dispatch]);
+    const token = localStorage.getItem("token")
+    if(token){
+      dispatch(_getUser());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
