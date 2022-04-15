@@ -30,7 +30,6 @@ const PostDetail = () => {
   const _getPostDetail = async () => {
     setLoading(true);
     const form = {
-      user_id: user?._id,
       post_id: id,
     };
     const { data } = await getPostDetail(form);

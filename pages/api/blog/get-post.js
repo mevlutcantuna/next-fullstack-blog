@@ -1,4 +1,3 @@
-import { checkIsManualRevalidate } from "next/dist/server/api-utils";
 import Blog from "../../../models/blog";
 import Like from "../../../models/like";
 import User from "../../../models/user";
@@ -14,12 +13,14 @@ export default function handler(req, res) {
 }
 
 const getDetailOfPost = async (req, res) => {
-  const { post_id, user_id } = req.body;
+  const { post_id } = req.body;
   try {
-    if (user_id && post_id) {
+    if ( post_id) {
       const post = await Blog.findOne({ _id: post_id });
-      const isLiked = (await Like.findOne({ user_id, post_id })) ? true : false;
-      const user = await User.findOne({ _id: user_id });
+      const isLiked = (await Like.findOne({ user_id: post.user_id, post_id }))
+        ? true
+        : false;
+      const user = await User.findOne({ _id: post.user_id });
 
       return res
         .status(200)

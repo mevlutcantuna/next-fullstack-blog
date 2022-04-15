@@ -82,7 +82,7 @@ const Menu = () => {
                 </div>
               </>
             ) : (
-              <div>
+              <div className="auth">
                 <Link href="/login">
                   <a>Log in</a>
                 </Link>
