@@ -1,110 +1,135 @@
-.main-post-card{
-    width: 100%;
-    max-width: 700px;
+.main-post-card {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  &__info {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    border-radius: 1rem;
+    justify-content: space-between;
 
-    &__info{
-        display: flex;
+    &__left {
+      display: flex;
+      flex-direction: column;
 
-        &__left{
-            display: flex;
-            flex-direction: column;
-
-            &__header{
-                display: flex;
-                align-items: center;
-
-                &__post-owner{  
-                    display: flex;
-                    align-items: center;
-    
-                    &__image{
-                        font-size: 20px;
-                    }
-    
-                    &__name{
-                        font-size: 14px;
-                        color: rgba(41, 41, 41, 1);
-                        margin-left: 8px;
-                        font-weight: 400;
-                        letter-spacing: inherit;
-                    }
-    
-                }
-    
-                &__divider{
-                    margin: 0 8px;
-                    color: rgba(117, 117, 117, 1);
-                    font-weight: 400;
-                    font-size: 14px;
-                }
-    
-                &__date{
-                    color: rgba(117, 117, 117, 1);
-                    font-weight: 300;
-                    font-size: 14px;
-                }
-            }
-    
-            &__main{
-                display: flex;
-                flex-direction: column;
-    
-                &__title{
-                    font-size: 32px;
-                    line-height: 32px;
-                    margin-bottom: 2rem;
-                }
-    
-                &__desc{
-                    color: rgb(116, 116, 116);
-                    font-size: 16px;
-                }
-            }
-        }
-
-        
-
-        &__image{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 2rem;
-    
-            & img{
-                border-radius: 4px;
-    
-            }
-        }
-
-        
-    }
-
-    &__footer{
+      &__header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 1rem;
 
-        &__left{
-            display: flex;
+        &__post-owner {
+          display: flex;
+          align-items: center;
 
-            &__tags{
-                margin-right: 1rem;
-            }
+          &__image {
+            font-size: 20px;
+          }
+
+          &__name {
+            font-size: 14px;
+            color: rgba(41, 41, 41, 1);
+            margin-left: 8px;
+            font-weight: 400;
+            letter-spacing: inherit;
+          }
         }
+
+        &__divider {
+          margin: 0 8px;
+          color: rgba(117, 117, 117, 1);
+          font-weight: 400;
+          font-size: 14px;
+        }
+
+        &__date {
+          color: rgba(117, 117, 117, 1);
+          font-weight: 300;
+          font-size: 14px;
+        }
+      }
+
+      &__main {
+        display: flex;
+        flex-direction: column;
+
+        &__title {
+          font-size: 32px;
+          line-height: 32px;
+          margin-bottom: 2rem;
+
+          & a {
+            color: black;
+
+            &:hover {
+              color: rgb(53, 108, 180);
+            }
+          }
+        }
+
+        &__desc {
+          color: rgb(116, 116, 116);
+          font-size: 16px;
+
+          & a {
+            color: black;
+
+            &:hover {
+              color: rgb(53, 108, 180);
+            }
+          }
+        }
+      }
     }
 
-    
+    &__image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 2rem;
 
-    &:hover{
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        transition: all .5s ease-in-out;
+      & span {
+        width: 150px !important;
+        height: 150px !important;
+      }
+
+      & img {
+        border-radius: 4px;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    &__left {
+      display: flex;
+
+      &__tags {
+        margin-right: 1rem;
+        color: black;
+
+        & span {
+          margin-right: 0.5rem;
+        }
+      }
+
+      &__reading-time {
+        color: rgb(94, 93, 93);
+      }
     }
 
-   
+    &__right {
+      z-index: 1000000;
+    }
+  }
+
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 0.5s ease-in-out;
+  }
 }

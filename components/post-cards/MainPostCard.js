@@ -2,8 +2,45 @@ import Image from "next/image";
 
 import MoreIcon from "../../icons/more-icon";
 import XImage from "../../assets/ximage.jpeg";
+import moment from "moment";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+import { Button, Popover } from "antd";
 
-const MainPostCard = () => {
+const MainPostCard = ({ post }) => {
+  const { user } = useSelector((state) => state.user);
+
+  const edit = () => console.log("clicked");
+
+  const deletePost = () => console.log("clicked");
+
+  const Content = () => {
+    return (
+      <div style={{ display: "flex", flexDirection: "column",width:"6rem" }}>
+        <Button
+          style={{
+            marginBottom: ".25rem",
+            backgroundColor: "rgb(53, 108, 180)",
+          }}
+          type="primary"
+          onClick={edit}
+        >
+          Edit
+        </Button>
+        <Button
+          type="danger"
+          style={{
+            marginBottom: ".25rem",
+            backgroundColor:"#E74421"
+          }}
+          onClick={deletePost}
+        >
+          Delete
+        </Button>
+      </div>
+    );
+  };
+
   return (
     <div className="main-post-card">
       <div className="main-post-card__info">
@@ -14,31 +51,38 @@ const MainPostCard = () => {
                 😀
               </span>
               <span className="main-post-card__info__left__header__post-owner__name">
-                Mevlüt Can Tuna
+                {post.author.fullname}
               </span>
             </span>
             <span className="main-post-card__info__left__header__divider">
               ·
             </span>
             <span className="main-post-card__info__left__header__date">
-              Oct 21, 2022
+              {moment(post.createdAt).format("MMM Do YYYY")}
             </span>
           </div>
           <div className="main-post-card__info__left__main">
             <div className="main-post-card__info__left__main__title">
-              Finally a better react.js folder structure
+              <Link href={`/blogs/${post._id}`}>
+                <a>{post.title}</a>
+              </Link>
             </div>
-            <div className="main-post-card__info__main__desc">
-              You might thinked “Why react.js don’t have standard folder
-              structure?”. To find answer, you need to understand the difference
-              between framework library. Please refer the below image:-
+            <div className="main-post-card__info__left__main__desc">
+              <Link href={`/blogs/${post._id}`}>
+                <a>{post.shortDescription}</a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="main-post-card__info__image">
           <div className="main-post-card__info__image__container">
-            <Image src={XImage} width={300} height={300} alt="post-image" />
+            <Image
+              src={post.imageUrl}
+              width={300}
+              height={300}
+              alt="post-image"
+            />
           </div>
         </div>
       </div>
@@ -46,14 +90,22 @@ const MainPostCard = () => {
       <div className="main-post-card__footer">
         <div className="main-post-card__footer__left">
           <div className="main-post-card__footer__left__tags">
-            React , Vue , OOP
+            {post.tags.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
           <div className="main-post-card__footer__left__reading-time">
-            4 min read
+            {post.readingTime.text}
           </div>
         </div>
         <div className="main-post-card__footer__right">
-          <MoreIcon />
+          {user?._id === post.author._id && (
+            <Popover placement="bottom" content={<Content />}>
+              <Button type="text">
+                <MoreIcon />
+              </Button>
+            </Popover>
+          )}
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
     &__center {
       padding: 1rem;
 
-      & a{
+      & button{
         display: flex;
         justify-content: center;
         color: white;
@@ -21,6 +21,9 @@
         margin-top: 2rem;
         padding: 1rem 0;
         border-radius: 4px;
+        background-color: transparent;
+        width: 100%;
+        cursor: pointer;
 
         &:hover{
           backdrop-filter: blur(8px);
@@ -57,7 +60,7 @@
       align-items: center;
       margin-bottom: 5rem;
 
-      & form{
+      &__form{
         display: flex;
 
         & input{

@@ -1,7 +1,7 @@
 .blogs {
   padding: 0 1rem;
   margin-top: 3rem;
-  
+
   &__container {
     width: 100%;
     max-width: 1000px;
@@ -9,5 +9,49 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &__search {
+      display: flex;
+      align-items: center;
+      padding-bottom: 4rem;
+
+      & input {
+        width: 25rem;
+        height: 3rem;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        margin-right: 1rem;
+        background-color: #f1f4f7;
+      }
+
+      & select {
+        height: 3rem;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        margin-right: 1rem;
+        background-color: #f1f4f7;
+      }
+
+      & button {
+        padding: 0 1.5rem;
+        border-radius: 0.25rem;
+        height: 3rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgb(29, 50, 90);
+          color: white;
+          transition: background-color 0.2s ease-in;
+        }
+      }
+    }
+
+    &__cards{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
   }
 }

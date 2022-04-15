@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { _resetUser } from "../../store/actions/user";
 import { useRouter } from "next/router";
 import { Spin } from "antd";
+import { getPosts } from "../../store/actions/search";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,11 @@ const Menu = () => {
     return router.push("/login");
   };
 
+  const goToPage = (page) => {
+    dispatch(getPosts("", page));
+    return router.push("/blogs");
+  };
+
   return (
     <div className="header-menu">
       <ul className="header-menu__links">
@@ -30,14 +36,10 @@ const Menu = () => {
           </Link>
         </li>
         <li className="header-menu__links__item">
-          <Link href="/">
-            <a>Technology</a>
-          </Link>
+          <button onClick={() => goToPage("Software")}>Sofware</button>
         </li>
         <li className="header-menu__links__item">
-          <Link href="/marketing">
-            <a>Marketing</a>
-          </Link>
+          <button onClick={() => goToPage("Marketing")}>Marketing</button>
         </li>
         <li className="header-menu__links__item">
           <Link href={user ? "/new-post" : "/login"}>

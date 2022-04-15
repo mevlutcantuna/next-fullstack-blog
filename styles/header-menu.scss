@@ -7,7 +7,7 @@
         &__item{
           display: flex;
           align-items: center;
-          & a{
+          & a,button{
             margin-right: 1.25rem;
             color: #1f66c9;
           }

@@ -20,7 +20,7 @@ const getPostsByFilter = async (req, res) => {
         { shortDescription: { $regex: ".*" + search + ".*" } },
         { description: { $regex: ".*" + search + ".*" } },
       ],
-      tags: tag === "" ? { $ne: tag } : { $in: tag },
+      tags: tag === "All" ? { $ne: tag } : { $in: tag },
     }).sort({ createdAt: "desc" });
 
     for (let i = 0; i < posts.length; i++) {

@@ -31,6 +31,7 @@ const PostDetail = () => {
     setLoading(true);
     const form = {
       post_id: id,
+      user_id:user._id
     };
     const { data } = await getPostDetail(form);
     setLoading(false);
