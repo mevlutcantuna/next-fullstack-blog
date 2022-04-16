@@ -1,5 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
-import Blog from "../../../models/blog";
+import Blog from "../../../models/post";
 
 dbConnect();
 

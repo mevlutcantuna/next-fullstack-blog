@@ -1,6 +1,6 @@
 import dbConnect from "../../../utils/dbConnect";
 import Like from "../../../models/like";
-import Blog from "../../../models/blog";
+import Blog from "../../../models/post";
 
 dbConnect();
 

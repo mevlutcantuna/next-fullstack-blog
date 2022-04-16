@@ -16,7 +16,7 @@ const SmallCard = ({ post }) => {
         />
       </div>
       <div className="small-post-card__header">
-        <Link href={`/blogs/${post?._id}`}>
+        <Link href={`/posts/${post?._id}`}>
           <a>
             <h3>{post?.title}</h3>
           </a>
@@ -25,7 +25,7 @@ const SmallCard = ({ post }) => {
       </div>
       <div className="small-post-card__text">{post?.shortDescription}</div>
       <div className="small-post-card__footer">
-        <Link href={`/blogs/${post?._id}`}>
+        <Link href={`/posts/${post?._id}`}>
           <a>More Detail</a>
         </Link>
       </div>

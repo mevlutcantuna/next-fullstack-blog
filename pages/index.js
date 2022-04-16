@@ -1,10 +1,10 @@
 import { useInput } from "../hooks/useInput";
 import Link from "next/link";
-import { getMostPopularPosts } from "../api/blog";
+import { getMostPopularPosts } from "../api/post";
 import { Layout } from "../components";
 import { SmallPostCard } from "../components";
 import { useDispatch } from "react-redux";
-import { getPosts } from "../store/actions/search";
+import { getPosts } from "../store/actions/post";
 import { useRouter } from "next/router";
 
 export default function Home({ popularPosts }) {
@@ -14,12 +14,12 @@ export default function Home({ popularPosts }) {
 
   const searchPosts = () => {
     dispatch(getPosts(inputs.search, "All"));
-    return router.push("/blogs");
+    return router.push("/posts");
   };
 
   const goToPage = () => {
     dispatch(getPosts("", "All"));
-    return router.push("/blogs");
+    return router.push("/posts");
   };
 
   return (

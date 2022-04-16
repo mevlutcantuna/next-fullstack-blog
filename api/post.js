@@ -35,3 +35,7 @@ export const deleteComment = async ({ comment_id }) => {
 export const getPostsByFilter = async (search, tag) => {
   return await instance.get(`blog/get-posts?search=${search}&tag=${tag}`);
 };
+
+export const deletePostByID = async (post_id) => {
+  return await instance.delete(`/blog/${post_id}`);
+};

@@ -1,4 +1,4 @@
-import Blog from "../../../models/blog";
+import Blog from "../../../models/post";
 import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/user";
 

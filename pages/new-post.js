@@ -8,7 +8,7 @@ import ImageUploaderWithPreview from "../components/ImageUploaderWithPreview";
 import { Spin, message, Select } from "antd";
 
 import Tags from "../constants/tags.json";
-import { createPost } from "../api/blog";
+import { createPost } from "../api/post";
 import readingTime from "reading-time";
 import { useRouter } from "next/router";
 
@@ -61,7 +61,7 @@ const NewPost = () => {
       const _post = await createPost(newPost);
       setPost(_post.data.post);
       setLoading(false);
-      router.push(`/blogs/${_post.data.post._id}`);
+      router.push(`/posts/${_post.data.post._id}`);
     } catch (error) {
       setLoading(false);
       return message.error(error.message);

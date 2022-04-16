@@ -1,4 +1,4 @@
-import Blog from "../../../models/blog";
+import Blog from "../../../models/post";
 import User from "../../../models/user";
 
 export default function handler(req, res) {

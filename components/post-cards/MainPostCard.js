@@ -1,22 +1,25 @@
 import Image from "next/image";
 
 import MoreIcon from "../../icons/more-icon";
-import XImage from "../../assets/ximage.jpeg";
 import moment from "moment";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Popover } from "antd";
+import { deletePost } from "../../store/actions/post";
 
 const MainPostCard = ({ post }) => {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const edit = () => console.log("clicked");
 
-  const deletePost = () => console.log("clicked");
+  const _deletePost = () => {
+    dispatch(deletePost(post._id));
+  };
 
   const Content = () => {
     return (
-      <div style={{ display: "flex", flexDirection: "column",width:"6rem" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "6rem" }}>
         <Button
           style={{
             marginBottom: ".25rem",
@@ -31,9 +34,9 @@ const MainPostCard = ({ post }) => {
           type="danger"
           style={{
             marginBottom: ".25rem",
-            backgroundColor:"#E74421"
+            backgroundColor: "#E74421",
           }}
-          onClick={deletePost}
+          onClick={_deletePost}
         >
           Delete
         </Button>

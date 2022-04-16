@@ -10,7 +10,7 @@ import {
   getComments,
   addComment,
   deleteComment,
-} from "../../api/blog";
+} from "../../api/post";
 import moment from "moment";
 import { Spin } from "antd";
 import HeartEmpty from "../../icons/heart-empty";
@@ -31,7 +31,7 @@ const PostDetail = () => {
     setLoading(true);
     const form = {
       post_id: id,
-      user_id:user._id
+      user_id: user._id,
     };
     const { data } = await getPostDetail(form);
     setLoading(false);

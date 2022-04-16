@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { _resetUser } from "../../store/actions/user";
 import { useRouter } from "next/router";
 import { Spin } from "antd";
-import { getPosts } from "../../store/actions/search";
+import { getPosts } from "../../store/actions/post";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Menu = () => {
 
   const goToPage = (page) => {
     dispatch(getPosts("", page));
-    return router.push("/blogs");
+    return router.push("/posts");
   };
 
   return (

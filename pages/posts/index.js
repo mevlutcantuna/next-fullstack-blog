@@ -3,7 +3,7 @@ import { useInput } from "../../hooks/useInput";
 import tags from "../../constants/tags.json";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../store/actions/search";
+import { getPosts } from "../../store/actions/post";
 import { Empty, Spin } from "antd";
 
 const Blogs = () => {
