@@ -6,42 +6,21 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Popover } from "antd";
 import { deletePost } from "../../store/actions/post";
+import Edit from "../EditPopover";
+
+import { useRouter } from "next/router";
 
 const MainPostCard = ({ post }) => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const router = useRouter();
 
-  const edit = () => console.log("clicked");
+  const _editPost = () => {
+    return router.push(`/edit-post/${post._id}`)
+  };
 
   const _deletePost = () => {
     dispatch(deletePost(post._id));
-  };
-
-  const Content = () => {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", width: "6rem" }}>
-        <Button
-          style={{
-            marginBottom: ".25rem",
-            backgroundColor: "rgb(53, 108, 180)",
-          }}
-          type="primary"
-          onClick={edit}
-        >
-          Edit
-        </Button>
-        <Button
-          type="danger"
-          style={{
-            marginBottom: ".25rem",
-            backgroundColor: "#E74421",
-          }}
-          onClick={_deletePost}
-        >
-          Delete
-        </Button>
-      </div>
-    );
   };
 
   return (
@@ -66,12 +45,12 @@ const MainPostCard = ({ post }) => {
           </div>
           <div className="main-post-card__info__left__main">
             <div className="main-post-card__info__left__main__title">
-              <Link href={`/blogs/${post._id}`}>
+              <Link href={`/posts/${post._id}`}>
                 <a>{post.title}</a>
               </Link>
             </div>
             <div className="main-post-card__info__left__main__desc">
-              <Link href={`/blogs/${post._id}`}>
+              <Link href={`/posts/${post._id}`}>
                 <a>{post.shortDescription}</a>
               </Link>
             </div>
@@ -103,7 +82,10 @@ const MainPostCard = ({ post }) => {
         </div>
         <div className="main-post-card__footer__right">
           {user?._id === post.author._id && (
-            <Popover placement="bottom" content={<Content />}>
+            <Popover
+              placement="bottom"
+              content={<Edit editPost={_editPost} deletePost={_deletePost} />}
+            >
               <Button type="text">
                 <MoreIcon />
               </Button>

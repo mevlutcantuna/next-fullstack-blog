@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Comment from "../../components/Comment";
 import Layout from "../../components/Layout";
 import {
@@ -12,11 +12,14 @@ import {
   deleteComment,
 } from "../../api/post";
 import moment from "moment";
-import { Spin } from "antd";
+import { Button, Popover, Spin } from "antd";
 import HeartEmpty from "../../icons/heart-empty";
 import HeartFill from "../../icons/heart-fill";
+import MoreIcon from "../../icons/more-icon";
 import PostTag from "../../components/PostTag";
 import { useInput } from "../../hooks/useInput";
+import EditPopover from "../../components/EditPopover";
+import { deletePost } from "../../store/actions/post";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
@@ -26,6 +29,7 @@ const PostDetail = () => {
   const [comments, setComments] = useState(null);
   const router = useRouter();
   const { id } = router.query;
+  const dispatch = useDispatch();
 
   const _getPostDetail = async () => {
     setLoading(true);
@@ -75,6 +79,15 @@ const PostDetail = () => {
       (item) => item._id !== data.comment._id
     );
     setComments(deletedComments);
+  };
+
+  const _deletePost = () => {
+    dispatch(deletePost(post._id));
+    router.push("/posts");
+  };
+
+  const editPost = () => {
+    return router.push(`/edit-post/${post._id}`);
   };
 
   useEffect(() => {
@@ -130,6 +143,23 @@ const PostDetail = () => {
                 )}
 
                 <span>{post.likes} Likes</span>
+                <span>
+                  {user._id === post.author._id && (
+                    <Popover
+                      content={
+                        <EditPopover
+                          deletePost={_deletePost}
+                          editPost={editPost}
+                        />
+                      }
+                      placement="bottom"
+                    >
+                      <Button type="text" style={{ transform: "scale(1)" }}>
+                        <MoreIcon />
+                      </Button>
+                    </Popover>
+                  )}
+                </span>
               </div>
             </div>
             <div className="post-detail__wrapper__tags">
