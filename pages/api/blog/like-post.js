@@ -1,6 +1,6 @@
 import dbConnect from "../../../utils/dbConnect";
 import Like from "../../../models/like";
-import Blog from "../../../models/post";
+import Post from "../../../models/post";
 
 dbConnect();
 
@@ -21,10 +21,10 @@ const updatePostLike = async (req, res) => {
     }
 
     // to get likes before calling here
-    const oldPost = await Blog.findOne({ _id: post_id });
+    const oldPost = await Post.findOne({ _id: post_id });
 
     const likes = oldPost.likes + likeValue;
-    const post = await Blog.findOneAndUpdate(
+    const post = await Post.findOneAndUpdate(
       { _id: post_id },
       { likes },
       {

@@ -1,4 +1,4 @@
-import Blog from "../../../models/post";
+import Post from "../../../models/post";
 import Like from "../../../models/like";
 import User from "../../../models/user";
 import dbConnect from "../../../utils/dbConnect";
@@ -16,7 +16,7 @@ const getDetailOfPost = async (req, res) => {
   const { post_id, user_id } = req.body;
   try {
     if (post_id) {
-      const post = await Blog.findOne({ _id: post_id });
+      const post = await Post.findOne({ _id: post_id });
       const isLiked = (await Like.findOne({ user_id, post_id })) ? true : false;
       const user = await User.findOne({ _id: post.user_id });
 

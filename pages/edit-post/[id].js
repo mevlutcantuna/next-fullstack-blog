@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Tags from "../../constants/tags.json";
-import { getPostDetail } from "../../api/post";
+import { getPostDetail, updatePost } from "../../api/post";
 
 const EditPost = () => {
   const [title, setTitle] = useState("");
@@ -63,6 +63,33 @@ const EditPost = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+
+    if (
+      title === "" ||
+      shortDescription === "" ||
+      description === "" ||
+      tagOptions.length === 0 ||
+      imageUrl === ""
+    ) {
+      return message.error("Please provide all requires.");
+    }
+
+    const updatedPost = {
+      title,
+      shortDescription,
+      description,
+      tags: tagOptions,
+      imageUrl,
+    };
+
+    try {
+      const { data } = await updatePost(updatedPost, id);
+      const newPost = { ...post, data };
+      setPost(newPost);
+      router.push(`/posts/${id}`)
+    } catch (error) {
+      return message.error(error.message);
+    }
   };
 
   useEffect(() => {

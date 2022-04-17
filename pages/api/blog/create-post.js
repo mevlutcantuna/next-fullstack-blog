@@ -1,4 +1,4 @@
-import Blog from "../../../models/post";
+import Post from "../../../models/post";
 import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/user";
 
@@ -9,17 +9,17 @@ export default function handler(req, res) {
     case "GET":
       return res
         .status(200)
-        .json({ success: true, message: "CREATE BLOG API" });
+        .json({ success: true, message: "CREATE Post API" });
     case "POST":
-      return createBlog(req, res);
+      return createPost(req, res);
   }
 }
 
-const createBlog = async (req, res) => {
+const createPost = async (req, res) => {
   const post = req.body;
 
   try {
-    const addedPost = new Blog(post);
+    const addedPost = new Post(post);
     const author = await User.findOne({ _id: post.user_id });
 
     await addedPost

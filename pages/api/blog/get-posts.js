@@ -1,4 +1,4 @@
-import Blog from "../../../models/post";
+import Post from "../../../models/post";
 import User from "../../../models/user";
 
 export default function handler(req, res) {
@@ -14,7 +14,7 @@ const getPostsByFilter = async (req, res) => {
   try {
     let filteredPosts = [];
 
-    const posts = await Blog.find({
+    const posts = await Post.find({
       $or: [
         { title: { $regex: ".*" + search + ".*" } },
         { shortDescription: { $regex: ".*" + search + ".*" } },

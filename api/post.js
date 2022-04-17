@@ -39,3 +39,7 @@ export const getPostsByFilter = async (search, tag) => {
 export const deletePostByID = async (post_id) => {
   return await instance.delete(`/blog/${post_id}`);
 };
+
+export const updatePost = async (updatedPost, post_id) => {
+  return await instance.put("/blog/update-post", { updatedPost, post_id });
+};
