@@ -1,3 +1,4 @@
+import Like from "../../../models/like";
 import Blog from "../../../models/post";
 import dbConnect from "../../../utils/dbConnect";
 
@@ -12,7 +13,7 @@ export default function handler(req, res) {
 
 const deletePost = async (req, res) => {
   const { id } = req.query;
-  console.log(id);
+
   try {
     if (!id) {
       return res
@@ -27,7 +28,7 @@ const deletePost = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Not found post." });
     }
-
+    const deleteLikes = await Like.findOneAndDelete({ post_id: id });
     const deletedPost = await Blog.findOneAndDelete({ _id: id });
     return res.status(200).json({ success: true, post: deletedPost });
   } catch (error) {

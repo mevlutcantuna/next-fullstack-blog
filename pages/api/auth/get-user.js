@@ -18,11 +18,10 @@ const getUser = async (req, res) => {
   try {
     // verify token and get id
     const { id } = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(id);
 
     // get user
     const user = await User.findOne({ _id: id });
-    
+
     // check token exists
     if (!token) {
       return res

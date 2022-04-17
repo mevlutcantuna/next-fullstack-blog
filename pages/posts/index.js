@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../store/actions/post";
 import { Empty, Spin } from "antd";
+import { deletePost } from "../../store/actions/post";
 
-const Blogs = () => {
+const Posts = () => {
   const [inputs, setInputs] = useInput({ search: "", tag: "All" });
   const { posts, loading } = useSelector((state) => state.search);
 
@@ -14,6 +15,10 @@ const Blogs = () => {
 
   const getFilteredPosts = () => {
     dispatch(getPosts(inputs.search, inputs.tag));
+  };
+
+  const _deletePost = (post_id) => {
+    dispatch(deletePost(post_id));
   };
 
   useEffect(() => {
@@ -26,9 +31,9 @@ const Blogs = () => {
 
   return (
     <Layout>
-      <div className="blogs">
-        <div className="blogs__container">
-          <div className="blogs__container__search">
+      <div className="posts">
+        <div className="posts__container">
+          <div className="posts__container__search">
             <input
               name="search"
               value={inputs.search}
@@ -47,13 +52,17 @@ const Blogs = () => {
           {loading ? (
             <Spin />
           ) : (
-            <div className="blogs__container__cards">
+            <div className="posts__container__cards">
               {posts ? (
                 posts.length === 0 ? (
                   <Empty />
                 ) : (
                   posts.map((post) => (
-                    <MainPostCard key={post._id} post={post} />
+                    <MainPostCard
+                      key={post._id}
+                      deletePost={_deletePost}
+                      post={post}
+                    />
                   ))
                 )
               ) : (
@@ -67,4 +76,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Posts;

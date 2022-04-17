@@ -30,7 +30,6 @@ const searchReducer = (state = initialState, action) => {
       return { ...state, loading: action.payload };
     case DELETE_POST_ERROR:
       return { ...state, error: action.payload };
-
     default:
       return { ...state };
   }

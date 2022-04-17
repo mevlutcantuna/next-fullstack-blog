@@ -1,92 +1,75 @@
-import { Upload, message } from "antd";
-import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { _updateUser } from "../store/actions/user";
 
-import {Form,Input,Button} from "antd"
-
-import ProfileImage from "../assets/ximage.jpeg";
+import { ImageUploaderWithPreview } from "./";
 
 const Profile = () => {
-    const [imageFile,setImageFile] = useState();
+  const [imageFile, setImageFile] = useState("");
+  const [email, setEmail] = useState("");
+  const [fullname, setFullname] = useState("");
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const props = {
-    beforeUpload: (file) => {
-      const isPNG =
-        file.type === "image/png" ||
-        file.type === "image/jpg" ||
-        file.type === "image/jpeg";
-      if (!isPNG) {
-        message.error(`${file.name} is not a png or jpg or jpeg file`);
-      }
-      return isPNG || Upload.LIST_IGNORE;
-    },
-    onChange: (info) => {
-      setImageFile(info.fileList);
-    },
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
+
+  const handleFullnameChange = (e) => {
+    setFullname(e.target.value);
+  };
+
+  const submit = () => {    
+    const updatedForm = {
+      ...user,
+      fullname,
+      email,
+      image: imageFile,
+    };
+
+    dispatch(_updateUser(user._id, updatedForm));
+  };
+
+  useEffect(() => {
+    if (user) {
+      setFullname(user.fullname);
+      setEmail(user.email);
+      setImageFile(user.image);
+    }
+  }, [user]);
 
   return (
     <div className="profile">
       <div className="profile__image">
-        <Upload {...props} multiple={false}>
-          <div className="profile__image__uploader">
-            <Image
-              width={200} 
-              height={200}
-              objectFit="contain"
-              alt="profile-image"
-              src={ProfileImage} 
-            />
-            <div className="profile__image__uploader__text">Upload</div>
-          </div>
-        </Upload>
+        <label>
+          <ImageUploaderWithPreview
+            setImage={setImageFile}
+            previewImage={imageFile}
+          />
+        </label>
       </div>
-
       <div className="profile__info">
-      <Form
-            wrapperCol={{ span: 24 }}
-            initialValues={{ remember: true }}
-            autoComplete="off"
-          >
-            <Form.Item 
-              rules={[
-                { required: true, message: "Please input your full name!" },
-              ]}
-            >
-              <Input
-                placeholder="Full Name"
-                type="text"
-                name="fullname"
-              />
-            </Form.Item>
-
-            <Form.Item
-              rules={[{ required: true, message: "Please input your email!" }]}
-            >
-              <Input
-                placeholder="Email"
-                type="email"
-                name="email"
-              />
-            </Form.Item>
-
-            <Form.Item
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
-            >
-              <Input.Password
-                name="password"
-                placeholder="Password"
-              />
-            </Form.Item>
-
-            <Form.Item  style={{ textAlign: 'right' }}>
-              <Button type="#000000" htmlType="submit" style={{borderRadius:"4px",width:"8rem",height:"2.5rem"}}>
-                Update
-              </Button>
-            </Form.Item>
-          </Form>
+        <label>
+          <span>Full Name</span>
+          <input
+            value={fullname}
+            onChange={handleFullnameChange}
+            placeholder="Full Name"
+            type="text"
+          />
+        </label>
+        <label>
+          <span>Email</span>
+          <input
+            value={email}
+            onChange={handleEmailChange}
+            placeholder="Email"
+            type="email"
+          />
+        </label>
+        <div className="profile__info__button">
+          <button onClick={submit}>Update</button>
+        </div>
       </div>
     </div>
   );

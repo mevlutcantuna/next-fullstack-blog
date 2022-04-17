@@ -1,6 +1,6 @@
 import Post from "../../../models/post";
-import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/user";
+import dbConnect from "../../../utils/dbConnect";
 
 dbConnect();
 

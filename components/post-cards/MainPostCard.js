@@ -3,24 +3,18 @@ import Image from "next/image";
 import MoreIcon from "../../icons/more-icon";
 import moment from "moment";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button, Popover } from "antd";
-import { deletePost } from "../../store/actions/post";
 import Edit from "../EditPopover";
 
 import { useRouter } from "next/router";
 
-const MainPostCard = ({ post }) => {
+const MainPostCard = ({ post, deletePost }) => {
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const _editPost = () => {
-    return router.push(`/edit-post/${post._id}`)
-  };
-
-  const _deletePost = () => {
-    dispatch(deletePost(post._id));
+    return router.push(`/edit-post/${post._id}`);
   };
 
   return (
@@ -30,7 +24,12 @@ const MainPostCard = ({ post }) => {
           <div className="main-post-card__info__left__header">
             <span className="main-post-card__info__left__header__post-owner">
               <span className="main-post-card__info__left__header__post-owner__image">
-                😀
+                <Image
+                  src={post.author.image}
+                  width={20}
+                  height={20}
+                  alt="author-image"
+                />
               </span>
               <span className="main-post-card__info__left__header__post-owner__name">
                 {post.author.fullname}
@@ -84,7 +83,12 @@ const MainPostCard = ({ post }) => {
           {user?._id === post.author._id && (
             <Popover
               placement="bottom"
-              content={<Edit editPost={_editPost} deletePost={_deletePost} />}
+              content={
+                <Edit
+                  editPost={_editPost}
+                  deletePost={() => deletePost(post._id)}
+                />
+              }
             >
               <Button type="text">
                 <MoreIcon />

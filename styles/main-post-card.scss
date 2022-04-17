@@ -1,6 +1,6 @@
 .main-post-card {
   width: 100%;
-  max-width: 700px;
+  max-width: 700px; 
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
@@ -18,13 +18,24 @@
       &__header {
         display: flex;
         align-items: center;
+        margin-bottom: 0.75rem;
 
         &__post-owner {
           display: flex;
           align-items: center;
 
           &__image {
-            font-size: 20px;
+            display: flex;
+
+            & span {
+              display: flex;
+              width: 20px !important;
+              height: 20px !important;
+            }
+
+            & img {
+              border-radius: 100%;
+            }
           }
 
           &__name {
@@ -131,5 +142,26 @@
   &:hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 0.5s ease-in-out;
+  }
+}
+
+
+@media only screen and (max-width: 680px) {
+  .main-post-card {
+    &__info {
+      flex-direction: column-reverse;
+
+      &__image{
+        margin: 1rem 0;
+
+        &__container{
+
+          & span {
+            width: initial !important;
+            height: initial !important;
+          }
+        }
+      }
+    }
   }
 }

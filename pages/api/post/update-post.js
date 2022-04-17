@@ -1,4 +1,7 @@
 import Post from "../../../models/post";
+import dbConnect from "../../../utils/dbConnect";
+
+dbConnect();
 
 export default function handler(req, res) {
   switch (req.method) {
