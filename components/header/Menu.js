@@ -39,7 +39,7 @@ const Menu = () => {
           <button onClick={() => goToPage("Software")}>Sofware</button>
         </li>
         <li className="header-menu__links__item">
-          <button onClick={() => goToPage("Marketing")}>Marketing</button>
+          <button onClick={() => goToPage("Design")}>Design</button>
         </li>
         <li className="header-menu__links__item">
           <Link href={user ? "/new-post" : "/login"}>
