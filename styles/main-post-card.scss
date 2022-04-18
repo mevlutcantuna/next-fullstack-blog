@@ -69,14 +69,7 @@
           font-size: 32px;
           line-height: 32px;
           margin-bottom: 2rem;
-
-          & a {
-            color: black;
-
-            &:hover {
-              color: rgb(53, 108, 180);
-            }
-          }
+          color: black;
         }
 
         &__desc {

@@ -7,8 +7,6 @@ import { deletePost } from "../../store/actions/post";
 import tags from "../../constants/tags.json";
 import { Empty, Spin } from "antd";
 
-
-
 const Posts = () => {
   const [inputs, setInputs] = useInput({ search: "", tag: "All" });
   const { posts, loading } = useSelector((state) => state.search);
@@ -19,7 +17,8 @@ const Posts = () => {
     dispatch(getPosts(inputs.search, inputs.tag));
   };
 
-  const _deletePost = (post_id) => {
+  const _deletePost = (e, post_id) => {
+    e.stopPropagation();
     dispatch(deletePost(post_id));
   };
 
