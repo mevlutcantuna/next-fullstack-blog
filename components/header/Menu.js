@@ -18,7 +18,7 @@ const Menu = () => {
 
   const logout = () => {
     dispatch(_resetUser());
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     return router.push("/login");
   };
 

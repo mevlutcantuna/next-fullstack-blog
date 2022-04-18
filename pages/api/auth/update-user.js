@@ -14,12 +14,14 @@ const updateUser = async (req, res) => {
   const { updatedUser, user_id } = req.body;
 
   try {
+    // check parametres come
     if (!user_id && !updatedUser) {
       return res
         .status(400)
         .json({ success: false, message: "Please provide all requirements." });
     }
 
+    // update user
     const user = await User.findByIdAndUpdate({ _id: user_id }, updatedUser, {
       new: true,
     });

@@ -2,7 +2,7 @@ import { getUser, updateUser } from "../../api/auth";
 import {
   GET_USER_SUCCESS,
   GET_USER_LOADING,
-  GET_USER_ERROR,
+  GET_USER_ERROR, 
   RESET_USER,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_LOADING,
@@ -11,7 +11,7 @@ import {
 
 export const _getUser = () => async (dispatch) => {
   dispatch({ type: GET_USER_LOADING, payload: true });
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   try {
     const { data } = await getUser(token);

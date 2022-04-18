@@ -1,11 +1,13 @@
-import { Layout, MainPostCard } from "../../components";
-import { useInput } from "../../hooks/useInput";
-import tags from "../../constants/tags.json";
 import { useEffect } from "react";
+import { useInput } from "../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
+import { Layout, MainPostCard } from "../../components";
 import { getPosts } from "../../store/actions/post";
-import { Empty, Spin } from "antd";
 import { deletePost } from "../../store/actions/post";
+import tags from "../../constants/tags.json";
+import { Empty, Spin } from "antd";
+
+
 
 const Posts = () => {
   const [inputs, setInputs] = useInput({ search: "", tag: "All" });

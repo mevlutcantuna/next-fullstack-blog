@@ -14,6 +14,7 @@ const deleteComment = async (req, res) => {
   const {id} = req.query;
 
   try {
+    // check id comes
     if (!id) {
       return res.status(400).json({
         success: false,
@@ -21,6 +22,7 @@ const deleteComment = async (req, res) => {
       });
     }
 
+    // delete comment
     const deletedComment = await Comment.findOneAndDelete({ _id: id });
 
     return res.status(200).json({ success: true, comment: deletedComment });

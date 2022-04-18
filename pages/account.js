@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Layout, MainPostCard } from "../components";
 import { Profile } from "../components";
-
-import { Empty, Tabs } from "antd";
-import { useEffect, useState } from "react";
 import { deletePostByID, getLikedPosts, getMyPosts } from "../api/post";
-import { useSelector } from "react-redux";
+import { Empty, Tabs } from "antd";
+
 
 const { TabPane } = Tabs;
 

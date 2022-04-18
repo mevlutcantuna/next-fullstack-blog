@@ -1,10 +1,9 @@
-import { Form, Input, Button, message } from "antd";
+import { useInput } from "../hooks/useInput";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signup } from "../api/auth";
-import { useInput } from "../hooks/useInput";
-
-import {errorMessage} from "../utils/notifications"
+import { errorMessage } from "../utils/notifications";
+import { Form, Input, Button, message } from "antd";
 
 const Signup = () => {
   const router = useRouter();
@@ -17,10 +16,10 @@ const Signup = () => {
   const onSubmit = async () => {
     try {
       const response = await signup(inputs);
-      router.push("/login")
-      return message.success("You signed up.")
+      router.push("/login");
+      return message.success("You signed up.");
     } catch (error) {
-      return errorMessage(error["response"].data.message)
+      return errorMessage(error["response"].data.message);
     }
   };
 
@@ -35,7 +34,7 @@ const Signup = () => {
             autoComplete="off"
             onSubmit={onSubmit}
           >
-            <Form.Item 
+            <Form.Item
               rules={[
                 { required: true, message: "Please input your full name!" },
               ]}

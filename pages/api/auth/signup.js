@@ -23,6 +23,7 @@ const signup = async (req, res) => {
         .status(400)
         .json({ success: false, message: "the user exits" });
 
+    // add new user to DB
     const newUser = new User({ fullname, email, password });
     await newUser
       .save()

@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
+import { useInput } from "../../hooks/useInput";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Comment from "../../components/Comment";
 import Layout from "../../components/Layout";
+import PostTag from "../../components/PostTag";
+import EditPopover from "../../components/EditPopover";
 import {
   getPostDetail,
   updatePostLikeCount,
@@ -16,9 +19,6 @@ import { Button, Popover, Spin } from "antd";
 import HeartEmpty from "../../icons/heart-empty";
 import HeartFill from "../../icons/heart-fill";
 import MoreIcon from "../../icons/more-icon";
-import PostTag from "../../components/PostTag";
-import { useInput } from "../../hooks/useInput";
-import EditPopover from "../../components/EditPopover";
 import { deletePost } from "../../store/actions/post";
 
 const PostDetail = () => {

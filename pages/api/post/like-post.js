@@ -47,7 +47,9 @@ const updatePostLike = async (req, res) => {
         .status(200)
         .json({ success: true, post: { ...post._doc, isLiked: true } });
     }
+
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
+ 

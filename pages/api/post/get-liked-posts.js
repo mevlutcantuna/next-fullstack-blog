@@ -20,8 +20,11 @@ const getLikedPosts = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Please provide all requirements" });
 
+    // get IDs of liked posts
     const likedPostsIDs = await Like.find({ user_id });
     let likedPosts = [];
+
+    // get author and post details of liked posts and add to likedPosts array
     for (let i = 0; i < likedPostsIDs.length; i++) {
       const post = await Post.find({ _id: likedPostsIDs[i].post_id });
       const author = await User.find({ _id: likedPostsIDs[i].user_id });

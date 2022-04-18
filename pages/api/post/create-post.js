@@ -19,7 +19,9 @@ const createPost = async (req, res) => {
   const post = req.body;
 
   try {
+    // add post toDB
     const addedPost = new Post(post);
+    // get author of post
     const author = await User.findOne({ _id: post.user_id });
 
     await addedPost

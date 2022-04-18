@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = sessionStorage.getItem("token")
     if(token){
       dispatch(_getUser());
     }

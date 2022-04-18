@@ -20,7 +20,10 @@ const getMyPosts = async (req, res) => {
         .json({ success: false, message: "Please provide all requirements" });
 
     let postsWithAuthor = [];
+
+    // get my posts by user_id
     const posts = await Post.find({ user_id }).sort({ createdAt: "desc" });
+    // get author of my posts
     for (let i = 0; i < posts.length; i++) {
       const author = await User.findById(user_id);
       postsWithAuthor = [...postsWithAuthor, { ...posts[i]._doc, author }];

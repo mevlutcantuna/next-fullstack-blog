@@ -1,11 +1,10 @@
 import { useInput } from "../hooks/useInput";
-import Link from "next/link";
-import { getMostPopularPosts } from "../api/post";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { Layout } from "../components";
 import { SmallPostCard } from "../components";
-import { useDispatch } from "react-redux";
 import { getPosts } from "../store/actions/post";
-import { useRouter } from "next/router";
+import { getMostPopularPosts } from "../api/post";
 
 export default function Home({ popularPosts }) {
   const [inputs, setInputs] = useInput({ search: "" });

@@ -19,6 +19,7 @@ const updatePost = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Please provide all requirements." });
     }
+    // update post by id
     const post = await Post.findByIdAndUpdate({ _id: post_id }, updatedPost, {
       new: true,
     });

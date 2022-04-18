@@ -1,8 +1,8 @@
-import { Form, Input, Button, message } from "antd";
+import { useInput } from "../hooks/useInput";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { login } from "../api/auth";
-import { useInput } from "../hooks/useInput";
+import { Form, Input, Button, message } from "antd";
 
 const Login = () => {
   const [inputs, setInputs] = useInput({ email: "", password: "" });
@@ -13,7 +13,7 @@ const Login = () => {
 
     try {
       const { data } = await login(inputs);
-      localStorage.setItem("token", JSON.stringify(data.token));
+      sessionStorage.setItem("token", JSON.stringify(data.token));
       return router.push("/");
     } catch (error) {
       return message.error(error.response.data.message);

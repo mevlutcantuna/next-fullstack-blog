@@ -17,6 +17,7 @@ const getPostsByFilter = async (req, res) => {
   try {
     let filteredPosts = [];
 
+    // get posts by search and tag
     const posts = await Post.find({
       $or: [
         { title: { $regex: ".*" + search + ".*" } },
@@ -26,6 +27,7 @@ const getPostsByFilter = async (req, res) => {
       tags: tag === "All" ? { $ne: tag } : { $in: tag },
     }).sort({ createdAt: "desc" });
 
+    // get author of posts 
     for (let i = 0; i < posts.length; i++) {
       const user = await User.findOne({ _id: posts[i].user_id });
       filteredPosts = [...filteredPosts, { ...posts[i]._doc, author: user }];

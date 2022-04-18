@@ -15,6 +15,7 @@ const getComments = async (req, res) => {
   const { post_id } = req.body;
 
   try { 
+    // check post_id comes
     if (!post_id) {
       return res.status(400).json({
         success: false,
@@ -24,8 +25,10 @@ const getComments = async (req, res) => {
 
     let commentsWithUser = [];
 
+    // get comments of post
     const comments = await Comment.find({ post_id }).sort({"created_at":"desc"})
 
+    // get author of comment and add to commentWithUser
     for (let i = 0; i < comments.length; i++) {
       const user = await User.findOne({ _id: comments[i].user_id });
       commentsWithUser = [
