@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
-
 import DrawerMenu from "./DrawerMenu";
 import Menu from "./Menu";
-
 import HamburgerMenu from "../../icons/hamburger-menu";
 
 const Header = () => {

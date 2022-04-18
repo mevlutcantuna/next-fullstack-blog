@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useInput } from "../hooks/useInput";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -12,6 +14,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const { user } = useSelector((state) => state.user);
 
   const onSubmit = async () => {
     try {
@@ -22,6 +25,13 @@ const Signup = () => {
       return errorMessage(error["response"].data.message);
     }
   };
+
+  useEffect(() => {
+    let token = sessionStorage.getItem("token");
+    if (user || token) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   return (
     <div className="signup">

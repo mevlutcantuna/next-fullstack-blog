@@ -1,8 +1,8 @@
+import { useSelector } from "react-redux";
 import Image from "next/image";
 import MoreIcon from "../icons/more-icon";
-import { Popover, Button } from "antd";
-import { useSelector } from "react-redux";
 import moment from "moment";
+import { Popover, Button } from "antd";
 
 const Comment = ({ comment,_deleteComment }) => {
   const { user } = useSelector((state) => state.user);

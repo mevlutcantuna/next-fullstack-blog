@@ -3,10 +3,7 @@ import { useInput } from "../../hooks/useInput";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import Comment from "../../components/Comment";
-import Layout from "../../components/Layout";
-import PostTag from "../../components/PostTag";
-import EditPopover from "../../components/EditPopover";
+import { Comment, Layout, PostTag, EditPopover } from "../../components";
 import {
   getPostDetail,
   updatePostLikeCount,
@@ -20,6 +17,7 @@ import HeartEmpty from "../../icons/heart-empty";
 import HeartFill from "../../icons/heart-fill";
 import MoreIcon from "../../icons/more-icon";
 import { deletePost } from "../../store/actions/post";
+import Link from "next/link";
 
 const PostDetail = () => {
   const [post, setPost] = useState(null);
@@ -35,7 +33,7 @@ const PostDetail = () => {
     setLoading(true);
     const form = {
       post_id: id,
-      user_id: user._id,
+      user_id: user && user._id,
     };
     const { data } = await getPostDetail(form);
     setLoading(false);
@@ -93,6 +91,9 @@ const PostDetail = () => {
   useEffect(() => {
     if (user && id) {
       _getComments();
+    }
+
+    if (id) {
       _getPostDetail();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -131,36 +132,38 @@ const PostDetail = () => {
                 <span>{moment(post.updatedAt).format("MMM Do YYYY")}</span>
                 <span>{post.readingTime.text}</span>
               </div>
-              <div className="post-detail__wrapper__bar__right">
-                {!post.isLiked ? (
-                  <button onClick={() => updatePostLike(1)}>
-                    <HeartEmpty />
-                  </button>
-                ) : (
-                  <button onClick={() => updatePostLike(-1)}>
-                    <HeartFill />
-                  </button>
-                )}
-
-                <span>{post.likes} Likes</span>
-                <span>
-                  {user._id === post.author._id && (
-                    <Popover
-                      content={
-                        <EditPopover
-                          deletePost={_deletePost}
-                          editPost={editPost}
-                        />
-                      }
-                      placement="bottom"
-                    >
-                      <Button type="text" style={{ transform: "scale(1)" }}>
-                        <MoreIcon />
-                      </Button>
-                    </Popover>
+              {user && (
+                <div className="post-detail__wrapper__bar__right">
+                  {!post.isLiked ? (
+                    <button onClick={() => updatePostLike(1)}>
+                      <HeartEmpty />
+                    </button>
+                  ) : (
+                    <button onClick={() => updatePostLike(-1)}>
+                      <HeartFill />
+                    </button>
                   )}
-                </span>
-              </div>
+
+                  <span>{post.likes} Likes</span>
+                  <span>
+                    {user._id === post.author._id && (
+                      <Popover
+                        content={
+                          <EditPopover
+                            deletePost={_deletePost}
+                            editPost={editPost}
+                          />
+                        }
+                        placement="bottom"
+                      >
+                        <Button type="text" style={{ transform: "scale(1)" }}>
+                          <MoreIcon />
+                        </Button>
+                      </Popover>
+                    )}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="post-detail__wrapper__tags">
               {post.tags.map((tag) => (
@@ -183,42 +186,53 @@ const PostDetail = () => {
               {post.description}
             </div>
             <div className="post-detail__wrapper__comment-title">Comments</div>
-            <div className={"post-detail__wrapper__comment-bar"}>
-              <Image
-                className="post-detail__wrapper__comment-bar__image"
-                src={user && user.image}
-                width={40}
-                height={40}
-                alt="author-image"
-              />
-              <input
-                className="post-detail__wrapper__comment-bar__input"
-                value={inputs.commentValue}
-                onChange={setInputs}
-                name="commentValue"
-                placeholder="Write a comment..."
-              />
-              <button
-                disabled={inputs.commentValue === ""}
-                className="post-detail__wrapper__comment-bar__button"
-                onClick={_addComment}
-              >
-                Comment
-              </button>
-            </div>
-            <div className="post-detail__wrapper__comments">
-              {comments ? (
-                comments.map((comment) => (
-                  <Comment
-                    _deleteComment={_deleteComment}
-                    key={comment._id}
-                    comment={comment}
+            {!user ? (
+              <div style={{ fontSize: "1.75rem" }}>
+                You must&nbsp;
+                <Link href="/login">
+                  <a>sign in!</a>
+                </Link>
+              </div>
+            ) : (
+              <>
+                <div className={"post-detail__wrapper__comment-bar"}>
+                  <Image
+                    className="post-detail__wrapper__comment-bar__image"
+                    src={user && user.image}
+                    width={40}
+                    height={40}
+                    alt="author-image"
                   />
-                ))
-              ) : (
-                <h1>Add First Comment</h1>
-              )}
-            </div>
+                  <input
+                    className="post-detail__wrapper__comment-bar__input"
+                    value={inputs.commentValue}
+                    onChange={setInputs}
+                    name="commentValue"
+                    placeholder="Write a comment..."
+                  />
+                  <button
+                    disabled={inputs.commentValue === ""}
+                    className="post-detail__wrapper__comment-bar__button"
+                    onClick={_addComment}
+                  >
+                    Comment
+                  </button>
+                </div>
+                <div className="post-detail__wrapper__comments">
+                  {comments ? (
+                    comments.map((comment) => (
+                      <Comment
+                        _deleteComment={_deleteComment}
+                        key={comment._id}
+                        comment={comment}
+                      />
+                    ))
+                  ) : (
+                    <h1>Add First Comment</h1>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>

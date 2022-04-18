@@ -1,11 +1,10 @@
-import Layout from "../../components/Layout";
-import { Spin, Select, message } from "antd";
-import ImageUploaderWithPreview from "../../components/ImageUploaderWithPreview";
+import { ImageUploaderWithPreview,Layout } from "../../components/";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Tags from "../../constants/tags.json";
 import { getPostDetail, updatePost } from "../../api/post";
+import Tags from "../../constants/tags.json";
+import { Spin, Select, message } from "antd";
 
 const EditPost = () => {
   const [title, setTitle] = useState("");
@@ -86,7 +85,7 @@ const EditPost = () => {
       const { data } = await updatePost(updatedPost, id);
       const newPost = { ...post, data };
       setPost(newPost);
-      router.push(`/posts/${id}`)
+      router.push(`/posts/${id}`);
     } catch (error) {
       return message.error(error.message);
     }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { _updateUser } from "../store/actions/user";
-
 import { ImageUploaderWithPreview } from "./";
 
 const Profile = () => {

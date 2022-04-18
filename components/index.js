@@ -5,3 +5,5 @@ export { default as Profile } from "./Profile";
 export { default as MainPostCard } from "./post-cards/MainPostCard";
 export { default as PostTag } from "./PostTag";
 export { default as ImageUploaderWithPreview } from "./ImageUploaderWithPreview";
+export { default as EditPopover } from "./EditPopover";
+export { default as Comment } from "./Comment";

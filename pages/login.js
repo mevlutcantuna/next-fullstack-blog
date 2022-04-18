@@ -3,10 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { login } from "../api/auth";
 import { Form, Input, Button, message } from "antd";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Login = () => {
   const [inputs, setInputs] = useInput({ email: "", password: "" });
   const router = useRouter();
+  const { user } = useSelector((state) => state.user);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +22,13 @@ const Login = () => {
       return message.error(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    let token = sessionStorage.getItem("token");
+    if (user || token) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   return (
     <div className="login">

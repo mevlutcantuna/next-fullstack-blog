@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import moment from "moment";
 
 const SmallCard = ({ post }) => {

@@ -1,6 +1,6 @@
-import { message } from "antd";
 import { useEffect } from "react";
 import { uploadImage } from "../utils/uploadImage";
+import { message } from "antd";
 
 const ImageUploaderWithPreview = ({ setImage, previewImage }) => {
   const showPreview = (event, imageUrl) => {

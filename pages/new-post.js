@@ -2,13 +2,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useInput } from "../hooks/useInput";
 import { useRouter } from "next/router";
-import Layout from "../components/Layout";
+import { Layout } from "../components";
 import ImageUploaderWithPreview from "../components/ImageUploaderWithPreview";
 import Tags from "../constants/tags.json";
 import { createPost } from "../api/post";
 import readingTime from "reading-time";
 import { Spin, message, Select } from "antd";
-
 
 const NewPost = () => {
   const [inputs, setInputs] = useInput({
