@@ -1,15 +1,16 @@
+import { useSelector } from "react-redux";
 import { getUser, updateUser } from "../../api/auth";
 import {
   GET_USER_SUCCESS,
   GET_USER_LOADING,
-  GET_USER_ERROR, 
+  GET_USER_ERROR,
   RESET_USER,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_LOADING,
   UPDATE_USER_ERROR,
 } from "../constants/user";
 
-export const _getUser = () => async (dispatch) => {
+export const _getUser = (user) => async (dispatch) => {
   dispatch({ type: GET_USER_LOADING, payload: true });
   const token = JSON.parse(sessionStorage.getItem("token"));
 
