@@ -222,7 +222,7 @@ const PostDetail = () => {
                     Comment
                   </button>
                 </div>
-                {commentLoading ? (
+                {!commentLoading ? (
                   <div className="post-detail__wrapper__comments">
                     {comments ? (
                       comments.map((comment) => (
