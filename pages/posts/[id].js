@@ -25,6 +25,7 @@ const PostDetail = () => {
   const [loading, setLoading] = useState(false);
   const [inputs, setInputs] = useInput({ commentValue: "" });
   const [comments, setComments] = useState(null);
+  const [commentLoading, setCommentLoading] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
@@ -57,9 +58,12 @@ const PostDetail = () => {
   };
 
   const _getComments = async () => {
+    setCommentLoading(true);
     const { data } = await getComments({ post_id: id });
     setComments(data.comments);
+    setCommentLoading(false);
   };
+  console.log(commentLoading);
 
   const _addComment = async () => {
     const { data } = await addComment({
@@ -218,19 +222,25 @@ const PostDetail = () => {
                     Comment
                   </button>
                 </div>
-                <div className="post-detail__wrapper__comments">
-                  {comments ? (
-                    comments.map((comment) => (
-                      <Comment
-                        _deleteComment={_deleteComment}
-                        key={comment._id}
-                        comment={comment}
-                      />
-                    ))
-                  ) : (
-                    <h1>Add First Comment</h1>
-                  )}
-                </div>
+                {commentLoading ? (
+                  <div className="post-detail__wrapper__comments">
+                    {comments ? (
+                      comments.map((comment) => (
+                        <Comment
+                          _deleteComment={_deleteComment}
+                          key={comment._id}
+                          comment={comment}
+                        />
+                      ))
+                    ) : (
+                      <h1>Add First Comment</h1>
+                    )}
+                  </div>
+                ) : (
+                  <div style={{marginTop:"2rem",textAlign:"center"}}>
+                    <Spin />
+                  </div>
+                )}
               </>
             )}
           </div>
