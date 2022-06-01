@@ -1,7 +1,9 @@
 import axios from "axios";
 
-export const instance = axios.create({
-  baseURL: "https://next-fullstack-blog.vercel.app/api/",
-});
+const baseUrl = process.env.production
+  ? "https://next-fullstack-blog.vercel.app/api/"
+  : "http://localhost:3000/api/";
 
-//   baseURL: "http://localhost:3000/api/",
+export const instance = axios.create({
+  baseURL: baseUrl,
+});
