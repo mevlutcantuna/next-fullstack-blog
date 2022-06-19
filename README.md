@@ -30,7 +30,7 @@ In this project, I tried to make a fullstack blog website. People can sign in, s
 ## Setup
 To setup the project, run the following on your terminal in the order:
 
-Before start the project and your mongoDB URL as MONGODB_URL, add your jwt secret code as JWT_SECRET and chage your base url on api/instance.
+Before start the project and your mongoDB URL as MONGODB_URL, add your jwt secret code as JWT_SECRET and chage your base url on api/instance
 
 
 ```
